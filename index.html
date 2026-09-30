@@ -16,9 +16,12 @@
     --line:#ededf0;
     --ivory:#282c3f;        /* primary text on light bg */
     --muted:#7e808c;
-    --gold:#b58a3c;
-    --gold-soft:#d6336c;    /* accent (pink/magenta) */
-    --emerald:#03a685;
+    --gold:#8a6a2f;
+    --gold-soft:#8a6a2f;    /* single accent (muted gold) */
+    --emerald:#1f7a5a;
+    --accent:#23263a;       /* primary buttons */
+    --accent-hover:#363a55;
+    --on-accent:#ffffff;
     --danger:#c96a4b;
     --app-bg:#ffffff;
     --shadow:0 2px 16px rgba(40,44,63,.08);
@@ -35,8 +38,11 @@
     --muted:#9a9284;
     --gold:#c9a24b;
     --gold-soft:#e0c583;
-    --emerald:#274c40;
+    --emerald:#3d8a6d;
     --danger:#c96a4b;
+    --accent:#c9a24b;
+    --accent-hover:#d6b264;
+    --on-accent:#17140e;
     --app-bg:#131210;
     --shadow:0 2px 16px rgba(0,0,0,.3);
     --shadow-hover:0 8px 28px rgba(0,0,0,.45);
@@ -57,18 +63,18 @@
   /* Header */
   header.top{position:relative;display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:26px}
   .theme-toggle{position:absolute;top:-4px;right:0;display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--panel-2);color:var(--ivory);font-family:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;transition:.15s;box-shadow:var(--shadow)}
-  .theme-toggle:hover{border-color:var(--gold-soft);color:var(--gold-soft)}
-  .theme-toggle .tt-ico{font-size:14px;line-height:1}
+  .theme-toggle:hover{border-color:var(--ivory)}
+  .theme-toggle .tt-ico{display:inline-flex;line-height:1}
   .brand{display:flex;flex-direction:column;gap:2px}
   .brand h1{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:40px;letter-spacing:1px;margin:0;line-height:1}
-  .brand h1 .mark{color:var(--gold-soft)}
+  .brand h1 .mark{color:var(--gold)}
   .brand .tag{display:block;font-size:9px;color:var(--muted);letter-spacing:.28em;text-transform:uppercase;font-weight:600;margin-top:3px}
   .top .hint{font-size:13px;color:var(--muted);max-width:320px;text-align:right;line-height:1.5}
 
   /* Tabs */
   .tabs{display:flex;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px;width:max-content;margin-bottom:24px}
   .tab{appearance:none;border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:9px 20px;border-radius:999px;cursor:pointer;transition:.2s}
-  .tab[aria-selected="true"]{background:linear-gradient(180deg,var(--gold-soft),var(--gold));color:#1a1509;font-weight:600}
+  .tab[aria-selected="true"]{background:var(--accent);color:var(--on-accent);font-weight:600}
   .tab:focus-visible{outline:2px solid var(--gold-soft);outline-offset:2px}
 
   .view{display:none}
@@ -84,13 +90,12 @@
   /* Dropzone */
   #drop{border:1.5px dashed var(--line);border-radius:12px;padding:26px 18px;text-align:center;cursor:pointer;transition:.2s;background:var(--panel-2)}
   #drop.drag{border-color:var(--gold);background:var(--panel-2)}
-  #drop .ic{font-size:30px}
+  #drop .ic{display:flex;justify-content:center;color:var(--muted)}
   #drop p{margin:8px 0 2px;font-size:14px}
   #drop small{color:var(--muted);font-size:12px}
   input[type=file]{display:none}
 
-  .canvas-wrap{position:relative;background:
-      repeating-conic-gradient(#1a1815 0% 25%, #201d18 0% 50%) 50%/22px 22px;
+  .canvas-wrap{position:relative;background:var(--panel-2);
     border:1px solid var(--line);border-radius:12px;overflow:hidden;min-height:280px;display:flex;align-items:center;justify-content:center}
   .canvas-wrap canvas{max-width:100%;max-height:520px;display:block}
   .canvas-wrap .empty{color:var(--muted);font-size:14px;padding:40px;text-align:center}
@@ -100,24 +105,24 @@
   .control .row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:7px}
   .control .row .val{color:var(--gold-soft);font-variant-numeric:tabular-nums}
   input[type=range]{-webkit-appearance:none;width:100%;height:4px;border-radius:4px;background:var(--line);outline:none}
-  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid #1a1509;cursor:pointer;box-shadow:0 0 0 3px rgba(201,162,75,.15)}
-  input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid #1a1509;cursor:pointer}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--accent);border:2px solid var(--panel);cursor:pointer;box-shadow:0 0 0 1px var(--accent)}
+  input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--accent);border:2px solid var(--panel);cursor:pointer}
   input[type=range]:focus-visible{outline:2px solid var(--gold-soft);outline-offset:6px;border-radius:6px}
 
-  label.lbl{display:block;font-size:12px;font-weight:700;color:var(--ink);letter-spacing:.05em;text-transform:uppercase;margin:16px 0 8px}
+  label.lbl{display:block;font-size:12px;font-weight:700;color:var(--ivory);letter-spacing:.05em;text-transform:uppercase;margin:16px 0 8px}
 
   .chips{display:flex;flex-wrap:wrap;gap:7px}
   .chip{appearance:none;border:1px solid var(--line);background:var(--panel-2);color:var(--ivory);font-family:inherit;font-size:13px;padding:7px 13px;border-radius:999px;cursor:pointer;transition:.15s}
   .chip:hover{border-color:var(--gold-soft)}
-  .chip[aria-pressed="true"]{background:var(--emerald);border-color:var(--gold);color:#eef3ef}
+  .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
   .chip:focus-visible{outline:2px solid var(--gold-soft);outline-offset:2px}
 
   .looks{display:flex;flex-direction:column;gap:9px}
   .look{display:flex;align-items:center;gap:13px;text-align:left;width:100%;border:1px solid var(--line);background:var(--panel-2);border-radius:12px;padding:12px 14px;cursor:pointer;font-family:inherit;transition:.15s}
   .look:hover{border-color:var(--gold-soft)}
-  .look[aria-pressed="true"]{border-color:var(--gold);background:var(--panel-2);box-shadow:0 0 0 2px rgba(201,162,75,.18)}
-  .look-ic{font-size:20px;line-height:1;flex:none;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--panel);border-radius:9px;border:1px solid var(--line)}
-  .look-ic.ic-white{background:#ffffff}
+  .look[aria-pressed="true"]{border-color:var(--accent);background:var(--panel);box-shadow:0 0 0 1px var(--accent)}
+  .look-ic{flex:none;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--panel);color:var(--ivory);border-radius:9px;border:1px solid var(--line)}
+  .look[aria-pressed="true"] .look-ic:not(.sw-ic){background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
   .look-tx{display:flex;flex-direction:column;min-width:0}
   .look-tx strong{font-size:14px;font-weight:600;color:var(--ivory)}
   .look-tx em{font-style:normal;font-size:12px;color:var(--muted);margin-top:2px}
@@ -127,7 +132,7 @@
 
   /* Studio steps */
   .step{display:flex;align-items:baseline;gap:12px;margin:26px 0 14px}
-  .step-k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#1a1509;background:linear-gradient(180deg,var(--gold-soft),var(--gold));padding:4px 10px;border-radius:999px;font-weight:700;flex:none}
+  .step-k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-accent);background:var(--accent);padding:4px 10px;border-radius:999px;font-weight:700;flex:none}
   .step-h{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:700;letter-spacing:.3px;margin:0}
 
   #sdrop{border:1.5px dashed var(--line);border-radius:14px;background:var(--panel-2);cursor:pointer;overflow:hidden;position:relative;min-height:120px;display:flex;align-items:center;justify-content:center;transition:.2s}
@@ -151,22 +156,23 @@
   .steps-list a,.connect a{color:var(--gold-soft)}
   .connect .prov{margin:12px 0 4px}
 
-  .result-wrap{position:relative;background:repeating-conic-gradient(#1a1815 0% 25%,#201d18 0% 50%) 50%/22px 22px;border:1px solid var(--line);border-radius:12px;min-height:300px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .result-wrap{position:relative;background:var(--panel-2);border:1px solid var(--line);border-radius:12px;min-height:300px;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .result-empty{color:var(--muted);font-size:14px;padding:40px;text-align:center;max-width:420px}
   #result-img{display:none;max-width:100%;max-height:560px;border-radius:10px}
   .result-load{display:none;flex-direction:column;align-items:center;gap:12px;color:var(--gold-soft);font-size:14px}
-  .spin-lg{width:26px;height:26px;border-width:3px;border-color:rgba(201,162,75,.25);border-top-color:var(--gold)}
+  .spin-lg{width:26px;height:26px;border-width:3px;color:var(--gold)}
   .fallback{margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
 
   .swatches{display:flex;gap:9px;flex-wrap:wrap}
   .sw{width:34px;height:34px;border-radius:9px;border:2px solid transparent;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
   .sw[aria-pressed="true"]{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,162,75,.2)}
 
-  .btn{appearance:none;font-family:inherit;font-size:14px;font-weight:600;border-radius:10px;padding:11px 18px;cursor:pointer;border:1px solid transparent;transition:.15s}
-  .btn.primary{background:linear-gradient(180deg,var(--gold-soft),var(--gold));color:#1a1509}
-  .btn.primary:hover{filter:brightness(1.06)}
-  .btn.ghost{background:transparent;border-color:var(--line);color:var(--ivory)}
-  .btn.ghost:hover{border-color:var(--gold-soft)}
+  .btn{appearance:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:inherit;font-size:14px;font-weight:600;line-height:1.2;border-radius:10px;padding:10px 18px;cursor:pointer;border:1px solid transparent;transition:background .15s,border-color .15s,color .15s}
+  .btn .icn{flex:none}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+  .btn.primary:hover:not(:disabled){background:var(--accent-hover);border-color:var(--accent-hover)}
+  .btn.ghost{background:var(--panel);border-color:var(--line);color:var(--ivory)}
+  .btn.ghost:hover:not(:disabled){border-color:var(--ivory)}
   .btn:disabled{opacity:.45;cursor:not-allowed}
   .btn:focus-visible{outline:2px solid var(--gold-soft);outline-offset:2px}
   .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
@@ -176,11 +182,11 @@
   .switch input{opacity:0;width:0;height:0}
   .slider-t{position:absolute;inset:0;background:var(--line);border-radius:999px;transition:.2s;cursor:pointer}
   .slider-t:before{content:"";position:absolute;height:18px;width:18px;left:3px;top:3px;background:var(--ivory);border-radius:50%;transition:.2s}
-  .switch input:checked + .slider-t{background:var(--emerald)}
-  .switch input:checked + .slider-t:before{transform:translateX(18px);background:var(--gold-soft)}
+  .switch input:checked + .slider-t{background:var(--accent)}
+  .switch input:checked + .slider-t:before{transform:translateX(18px);background:var(--on-accent)}
 
-  input[type=text]{width:100%;background:var(--panel-2);border:1px solid var(--line);color:var(--ivory);border-radius:9px;padding:10px 12px;font-family:inherit;font-size:14px}
-  input[type=text]:focus{outline:none;border-color:var(--gold-soft)}
+  input[type=text],input[type=password]{width:100%;background:var(--panel-2);border:1px solid var(--line);color:var(--ivory);border-radius:9px;padding:10px 12px;font-family:inherit;font-size:14px}
+  input[type=text]:focus,input[type=password]:focus{outline:none;border-color:var(--gold-soft)}
   select.sel{width:100%;background:var(--panel-2);border:1px solid var(--line);color:var(--ivory);border-radius:9px;padding:10px 12px;font-family:inherit;font-size:14px}
   select.sel:focus{outline:none;border-color:var(--gold-soft)}
   textarea.ta{width:100%;background:var(--panel-2);border:1px solid var(--line);color:var(--ivory);border-radius:9px;padding:10px 12px;font-family:inherit;font-size:14px;resize:vertical;min-height:70px}
@@ -193,7 +199,7 @@
   .gal-grid .empty{color:var(--muted);font-size:13px;grid-column:1/-1;padding:24px;text-align:center;border:1px dashed var(--line);border-radius:12px}
   .thumb{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);aspect-ratio:1;background:#000}
   .thumb img{width:100%;height:100%;object-fit:cover;display:block}
-  .thumb a.dl{position:absolute;right:6px;bottom:6px;background:rgba(19,18,16,.8);color:var(--gold-soft);font-size:11px;padding:4px 8px;border-radius:6px;text-decoration:none;border:1px solid var(--line)}
+  .thumb a.dl{position:absolute;right:6px;bottom:6px;background:rgba(19,18,16,.8);color:#fff;font-size:11px;padding:4px 8px;border-radius:6px;text-decoration:none;border:1px solid var(--line)}
 
   /* Prompt box */
   .promptbox{background:var(--panel-2);border:1px solid var(--line);border-radius:11px;padding:15px;font-size:14px;line-height:1.6;color:var(--ivory);min-height:96px;white-space:pre-wrap}
@@ -203,10 +209,25 @@
   .kv{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   @media (max-width:520px){.kv{grid-template-columns:1fr}}
   .tools-out{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-  .tools-out a{font-size:12.5px;color:var(--gold-soft);text-decoration:none;border:1px solid var(--line);padding:6px 11px;border-radius:999px}
-  .tools-out a:hover{border-color:var(--gold-soft)}
-  .spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(26,21,9,.35);border-top-color:#1a1509;border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px;margin-right:6px}
+  .tools-out a{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--ivory);text-decoration:none;border:1px solid var(--line);background:var(--panel);padding:7px 12px;border-radius:999px}
+  .tools-out a .icn{width:13px;height:13px;color:var(--muted)}
+  .tools-out a:hover{border-color:var(--ivory)}
+  .spin{display:inline-block;width:14px;height:14px;border:2px solid currentColor;border-right-color:transparent;opacity:.8;border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px;margin-right:6px}
+  .btn .spin{margin-right:0}
   @keyframes sp{to{transform:rotate(360deg)}}
+  .gen-drop{border:1.5px dashed var(--line);border-radius:12px;background:var(--panel-2);min-height:130px;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;transition:.2s;position:relative}
+  .gen-drop.drag,.gen-drop:hover{border-color:var(--gold-soft)}
+  .gen-drop img{max-width:100%;max-height:180px;object-fit:contain;display:block}
+  .gen-drop-tx{text-align:center;padding:14px}
+  .gen-drop-tx p{margin:6px 0 2px;font-size:13.5px}
+  .gen-drop-tx small{color:var(--muted);font-size:12px}
+  .gen-drop.has img{display:block!important}
+  .gen-drop.has .gen-drop-tx{display:none}
+  @media (max-width:520px){.gen-uploads{grid-template-columns:1fr!important}}
+  #gen-img{display:none;max-width:100%;max-height:600px;border-radius:10px}
+  #gen-hist .thumb{cursor:pointer}
+  .drop-ic{display:flex;justify-content:center;color:var(--muted)}
+  .drop-ic .icn{width:26px;height:26px}
   footer{margin-top:50px;border-top:1px solid var(--line);padding-top:18px;font-size:12px;color:var(--muted);text-align:center}
 </style>
 </head>
@@ -219,7 +240,7 @@
     </div>
     <p class="hint">Turn a phone photo of your piece into a clean catalogue shot — then build an on-model brief for AI.</p>
     <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark / light theme" title="Dark / Light">
-      <span class="tt-ico">🌙</span><span class="tt-txt">Dark</span>
+      <span class="tt-ico"><i data-ic="moon"></i></span><span class="tt-txt">Dark</span>
     </button>
   </header>
 
@@ -236,7 +257,7 @@
         <h3>Your piece</h3>
         <p class="sub">JPG or PNG. A clean, well-lit shot gives the best result.</p>
         <div id="drop" tabindex="0" role="button" aria-label="Upload a jewellery photo">
-          <div class="ic">✦</div>
+          <div class="ic"><i data-ic="upload"></i></div>
           <p>Drop a photo, or tap to choose</p>
           <small>Ring · Necklace · Earrings · Kundan · Polki</small>
         </div>
@@ -282,8 +303,8 @@
         </select>
 
         <div class="btnrow">
-          <button class="btn primary" id="save" disabled>Download image</button>
-          <button class="btn ghost" id="reset" disabled>Reset sliders</button>
+          <button class="btn primary" id="save" disabled><i data-ic="download"></i>Download image</button>
+          <button class="btn ghost" id="reset" disabled><i data-ic="refresh"></i>Reset sliders</button>
         </div>
       </div>
     </div>
@@ -328,7 +349,7 @@
     </div>
 
     <div id="blacksize-wrap" style="display:none;margin-top:18px">
-      <label class="lbl">Demi par jewelry ka size (chhota ← → bada)</label>
+      <label class="lbl">Demi par jewelry ka size (chhota se bada)</label>
       <div style="display:flex;align-items:center;gap:12px">
         <input type="range" id="c-blacksize" min="1" max="10" value="5" style="flex:1">
         <span id="blacksize-val" style="font-size:13px;color:var(--muted);min-width:38px;text-align:right">5/10</span>
@@ -339,7 +360,7 @@
     <div id="enhance-wrap" style="display:none;margin-top:18px">
       <label class="lbl">Background — enhance ke baad kaisa ho?</label>
       <div class="chips" id="c-enhance"></div>
-      <p class="note" style="margin-top:6px;color:var(--muted)">Aap apni black demi + jewelry ki normal photo daalo → AI use clean professional bana dega (design same). Background black rakho ya white.</p>
+      <p class="note" style="margin-top:6px;color:var(--muted)">Aap apni black demi + jewelry ki normal photo daalo, AI use clean professional bana dega (design same). Background black rakho ya white.</p>
     </div>
 
     <div id="set-wrap" style="display:none;margin-top:18px">
@@ -394,24 +415,92 @@
       <p class="sub">Ise copy karke kisi bhi AI image app mein apni product photo ke saath paste kijiye.</p>
       <div class="promptbox" id="prompt"><span class="ph">Category, style aur describe choose karte hi yahan prompt ban jayega…</span></div>
       <div class="btnrow">
-        <button class="btn primary" id="copy">📋 Copy prompt</button>
-        <button class="btn ghost" id="shuffle">🎲 Naya variation</button>
+        <button class="btn primary" id="copy"><i data-ic="copy"></i>Copy prompt</button>
+        <button class="btn ghost" id="shuffle"><i data-ic="shuffle"></i>Naya variation</button>
       </div>
       <label class="lbl">Prompt yahan paste karein (product photo add karke)</label>
       <div class="tools-out">
-        <a href="https://gemini.google.com/" target="_blank" rel="noopener">Google Gemini ↗</a>
-        <a href="https://www.photta.app/tools/jewelry-studio" target="_blank" rel="noopener">Photta ↗</a>
-        <a href="https://jewelrymodelai.com/" target="_blank" rel="noopener">JewelryModelAI ↗</a>
-        <a href="https://www.sellerpic.ai/tools/virtual-try-on-jewelry" target="_blank" rel="noopener">SellerPic ↗</a>
+        <a href="https://gemini.google.com/" target="_blank" rel="noopener">Google Gemini<i data-ic="external"></i></a>
+        <a href="https://www.photta.app/tools/jewelry-studio" target="_blank" rel="noopener">Photta<i data-ic="external"></i></a>
+        <a href="https://jewelrymodelai.com/" target="_blank" rel="noopener">JewelryModelAI<i data-ic="external"></i></a>
+        <a href="https://www.sellerpic.ai/tools/virtual-try-on-jewelry" target="_blank" rel="noopener">SellerPic<i data-ic="external"></i></a>
       </div>
       <p class="note" style="margin-top:12px"><b>Design same rakhne ke liye zaroori:</b> aisa tool use karein jisme aap apni <b>photo attach</b> kar sakein (image-to-image / “edit” mode) — jaise Gemini me photo lagaakar. Sirf text-wale generator me photo attach nahi hoti, isliye wo har baar nayi design bana dete hain.</p>
+    </div>
+
+    <!-- ===== DIRECT IMAGE GENERATION (Gemini API) ===== -->
+    <div class="card" id="gen-tool" style="margin-top:20px">
+      <h3>Direct Image Banao <span style="font-family:Inter,sans-serif;font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.04em;vertical-align:middle">GEMINI API</span></h3>
+      <p class="sub">Upar chuni hui style + prompt se image yahin ban jayegi. Apni free Google AI Studio key daaliye — key sirf aapke browser me rehti hai, seedha Google ko jaati hai.</p>
+
+      <label class="lbl">1 · API key</label>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <input type="password" id="gen-key" placeholder="Apni Gemini API key yahan paste karein" autocomplete="off" style="flex:1;min-width:220px">
+        <button class="btn ghost" id="gen-key-show" type="button"><i data-ic="eye"></i>Dikhao</button>
+        <button class="btn ghost" id="gen-key-clear" type="button"><i data-ic="x"></i>Key hatao</button>
+      </div>
+      <label style="display:inline-flex;align-items:center;gap:7px;font-size:13px;margin-top:8px;cursor:pointer"><input type="checkbox" id="gen-key-remember" checked> Is browser me key yaad rakho</label>
+
+      <label class="lbl">2 · Product photo (zaroori)</label>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px" class="gen-uploads">
+        <div id="gen-drop" class="gen-drop" tabindex="0" role="button" aria-label="Upload jewellery photo">
+          <img id="gen-prev" alt="" style="display:none">
+          <div class="gen-drop-tx"><div class="drop-ic"><i data-ic="gem"></i></div><p>Jewellery photo daaliye</p><small>tap ya drag</small></div>
+        </div>
+        <div id="gen-fdrop" class="gen-drop" tabindex="0" role="button" aria-label="Upload model face photo">
+          <img id="gen-fprev" alt="" style="display:none">
+          <div class="gen-drop-tx"><div class="drop-ic"><i data-ic="user"></i></div><p>Model face photo (optional)</p><small>sirf “Fixed face” ke liye</small></div>
+        </div>
+      </div>
+      <input type="file" id="gen-file" accept="image/*" style="display:none">
+      <input type="file" id="gen-ffile" accept="image/*" style="display:none">
+
+      <div class="kv" style="margin-top:6px">
+        <div>
+          <label class="lbl">3 · Model</label>
+          <select id="gen-model" class="sel">
+            <option value="gemini-2.5-flash-image">Nano Banana — free tier (1K)</option>
+            <option value="gemini-3.1-flash-lite-image">Nano Banana 2 Lite — sabse sasta (1K)</option>
+            <option value="gemini-3.1-flash-image">Nano Banana 2 — paid (4K tak)</option>
+            <option value="gemini-3-pro-image">Nano Banana Pro — best, paid (4K tak)</option>
+          </select>
+        </div>
+        <div>
+          <label class="lbl">AI output size</label>
+          <select id="gen-size" class="sel">
+            <option value="1K">1K</option>
+            <option value="2K">2K</option>
+            <option value="4K">4K (sirf 2 / Pro)</option>
+          </select>
+        </div>
+      </div>
+      <p class="note" id="gen-model-note"></p>
+
+      <div class="btnrow">
+        <button class="btn primary" id="gen-go" type="button"><i data-ic="sparkles"></i>Image banao</button>
+        <button class="btn ghost" id="gen-again" type="button" disabled><i data-ic="shuffle"></i>Naya variation banao</button>
+      </div>
+      <p class="note" id="gen-status" style="display:none"></p>
+
+      <div class="result-wrap" id="gen-result" style="margin-top:14px">
+        <div class="result-empty" id="gen-empty">Bani hui image yahan dikhegi.</div>
+        <div class="result-load" id="gen-load"><span class="spin spin-lg"></span><span>Image ban rahi hai… (10–40 sec)</span></div>
+        <img id="gen-img" alt="Generated jewellery image">
+      </div>
+      <div class="btnrow">
+        <button class="btn primary" id="gen-dl4k" type="button" disabled><i data-ic="download"></i>4K download</button>
+        <button class="btn ghost" id="gen-dlorig" type="button" disabled><i data-ic="download"></i>Original download</button>
+        <button class="btn ghost" id="gen-toenh" type="button" disabled><i data-ic="arrow-right"></i>Enhance tab me bhejo</button>
+      </div>
+      <div class="gal-grid" id="gen-hist" style="margin-top:14px"></div>
+      <p class="note" style="margin-top:12px">Free tier ki roz ki limit hoti hai. Limit khatam ho jaye to upar wala prompt copy karke Gemini app me use karein. AI Studio me <b>billing ON na karein</b> to kabhi paisa nahi katega. Har image ko reference se milaa kar zaroor dekhein — AI kabhi-kabhi design thoda badal deta hai.</p>
     </div>
 
     <div class="card" id="label-tool" style="margin-top:20px">
       <h3>Size label lagao (optional)</h3>
       <p class="sub">AI se bani hui image yahan daaliye — upar cm wali size-lines aa jayengi, dono sire piece par khiska kar labeled image download kar lijiye.</p>
       <div id="lbldrop" style="border:1.5px dashed var(--line);border-radius:12px;background:var(--panel-2);padding:26px 18px;text-align:center;cursor:pointer;transition:.2s">
-        <div class="ic" style="font-size:28px">📏</div>
+        <div class="drop-ic"><i data-ic="ruler"></i></div>
         <p style="margin:8px 0 2px;font-size:14px">Generated image daaliye (tap ya drag)</p>
         <small style="color:var(--muted);font-size:12px">JPG/PNG · size-lines apne aap aa jayengi</small>
       </div>
@@ -422,11 +511,11 @@
           <!-- draggable measurement lines injected here -->
         </div>
         <div class="btnrow" style="margin-top:12px">
-          <button class="btn primary" id="lbl-download">⬇️ Labeled image download</button>
-          <button class="btn ghost" id="lbl-refresh">↻ Lines reset (sizes se)</button>
-          <button class="btn ghost" id="lbl-clear">✕ Image hatao</button>
+          <button class="btn primary" id="lbl-download"><i data-ic="download"></i>Labeled image download</button>
+          <button class="btn ghost" id="lbl-refresh"><i data-ic="refresh"></i>Lines reset (sizes se)</button>
+          <button class="btn ghost" id="lbl-clear"><i data-ic="x"></i>Image hatao</button>
         </div>
-        <p class="note" style="margin-top:8px;color:var(--muted)">Har line ke dono sire (○) drag karke piece ke length par rakhiye. Lines wahi cm dikhati hain jo aapne upar Size (cm) me daale.</p>
+        <p class="note" style="margin-top:8px;color:var(--muted)">Har line ke dono gol sire drag karke piece ke length par rakhiye. Lines wahi cm dikhati hain jo aapne upar Size (cm) me daale.</p>
       </div>
       <p class="note" id="lbl-note" style="margin-top:10px"></p>
     </div>
@@ -435,12 +524,12 @@
       <h3>Set Layout banao (professional set image)</h3>
       <p class="sub">Alag-alag pro images (necklace, earring) daalo — white background apne aap hat jayega. Phir drag karke move aur slider se resize karke sahi size me arrange karo, aur download. Proportion aapke haath me.</p>
       <div class="btnrow" style="margin-bottom:10px;flex-wrap:wrap">
-        <button class="btn primary" id="sl-add">＋ Image add karo</button>
-        <button class="btn ghost" id="sl-dup" disabled>⧉ Duplicate + flip</button>
-        <button class="btn ghost" id="sl-crop" disabled>✂ Crop</button>
-        <button class="btn ghost" id="sl-flip" disabled>⇄ Flip</button>
-        <button class="btn ghost" id="sl-front" disabled>↑ Aage laao</button>
-        <button class="btn ghost" id="sl-del" disabled>🗑 Delete</button>
+        <button class="btn primary" id="sl-add"><i data-ic="plus"></i>Image add karo</button>
+        <button class="btn ghost" id="sl-dup" disabled><i data-ic="copy"></i>Duplicate + flip</button>
+        <button class="btn ghost" id="sl-crop" disabled><i data-ic="crop"></i>Crop</button>
+        <button class="btn ghost" id="sl-flip" disabled><i data-ic="flip"></i>Flip</button>
+        <button class="btn ghost" id="sl-front" disabled><i data-ic="arrow-up"></i>Aage laao</button>
+        <button class="btn ghost" id="sl-del" disabled><i data-ic="trash"></i>Delete</button>
       </div>
       <input type="file" id="sl-file" accept="image/*" style="display:none" />
       <label class="lbl" style="font-size:13px;margin-bottom:6px;display:block">Demi / background</label>
@@ -452,8 +541,8 @@
       </div>
       <div class="btnrow" style="margin-top:12px;flex-wrap:wrap;align-items:center">
         <label style="display:inline-flex;align-items:center;gap:6px;font-size:13px;cursor:pointer"><input type="checkbox" id="sl-reflect"> Neeche soft reflection</label>
-        <button class="btn primary" id="sl-download" disabled>⬇️ Download set image</button>
-        <button class="btn ghost" id="sl-clear">✕ Sab hatao</button>
+        <button class="btn primary" id="sl-download" disabled><i data-ic="download"></i>Download set image</button>
+        <button class="btn ghost" id="sl-clear"><i data-ic="x"></i>Sab hatao</button>
       </div>
       <p class="note" id="sl-note" style="margin-top:10px;color:var(--muted)">Tip: pehle necklace add karo (bada rakho), phir earring add karke chhota karo, aur “Duplicate + flip” se doosra earring bana ke doosri taraf rakho.</p>
     </div>
@@ -494,15 +583,15 @@
       <p class="sub">Ise copy karke kisi image-to-video AI mein apni product photo ke saath paste kijiye.</p>
       <div class="promptbox" id="v-prompt"><span class="ph">Options choose karte hi yahan video prompt ban jayega…</span></div>
       <div class="btnrow">
-        <button class="btn primary" id="v-copy">📋 Copy prompt</button>
-        <button class="btn ghost" id="v-shuffle">🎲 Naya variation</button>
+        <button class="btn primary" id="v-copy"><i data-ic="copy"></i>Copy prompt</button>
+        <button class="btn ghost" id="v-shuffle"><i data-ic="shuffle"></i>Naya variation</button>
       </div>
       <label class="lbl">Prompt yahan paste karein (photo attach karke)</label>
       <div class="tools-out">
-        <a href="https://gemini.google.com/" target="_blank" rel="noopener">Google Veo (Gemini) ↗</a>
-        <a href="https://klingai.com/" target="_blank" rel="noopener">Kling AI ↗</a>
-        <a href="https://runwayml.com/" target="_blank" rel="noopener">Runway ↗</a>
-        <a href="https://pika.art/" target="_blank" rel="noopener">Pika ↗</a>
+        <a href="https://gemini.google.com/" target="_blank" rel="noopener">Google Veo (Gemini)<i data-ic="external"></i></a>
+        <a href="https://klingai.com/" target="_blank" rel="noopener">Kling AI<i data-ic="external"></i></a>
+        <a href="https://runwayml.com/" target="_blank" rel="noopener">Runway<i data-ic="external"></i></a>
+        <a href="https://pika.art/" target="_blank" rel="noopener">Pika<i data-ic="external"></i></a>
       </div>
       <p class="note" style="margin-top:12px"><b>Zaroori:</b> design same rakhne ke liye <b>image-to-video</b> tool use karein (jahan aap apni photo attach karein). Video image se kaafi mehnga &amp; slow hota hai, aur 360° ghumane se design thoda badal sakta hai — <b>gentle zoom/parallax</b> sabse safe rehta hai.</p>
     </div>
@@ -515,6 +604,78 @@
 (function(){
   "use strict";
 
+  /* ---------- Icon set (line icons, 24px grid) ---------- */
+  const ICONS={
+    moon:'<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>',
+    sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>',
+    upload:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/>',
+    download:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/>',
+    copy:'<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
+    shuffle:'<path d="M16 3h5v5"/><path d="M4 20 21 3"/><path d="M21 16v5h-5"/><path d="M15 15l6 6"/><path d="M4 4l5 5"/>',
+    sparkles:'<path d="M12 3l1.8 4.9L18.7 9.7 13.8 11.5 12 16.4l-1.8-4.9L5.3 9.7l4.9-1.8z"/><path d="M19 15v4M17 17h4M5 3v3M3.5 4.5h3"/>',
+    x:'<path d="M18 6 6 18M6 6l12 12"/>',
+    check:'<path d="M20 6 9 17l-5-5"/>',
+    external:'<path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>',
+    'arrow-right':'<path d="M5 12h14M13 6l6 6-6 6"/>',
+    'arrow-up':'<path d="M12 19V5M5 12l7-7 7 7"/>',
+    eye:'<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+    'eye-off':'<path d="M9.9 4.24A9.1 9.1 0 0 1 12 4c6.4 0 10 8 10 8a18.5 18.5 0 0 1-2.16 3.19M6.6 6.6A18.4 18.4 0 0 0 2 12s3.6 8 10 8a9.7 9.7 0 0 0 5.4-1.6"/><path d="M2 2l20 20"/><path d="M14.1 14.1a3 3 0 1 1-4.2-4.2"/>',
+    gem:'<path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M12 21 8.5 9 12 3l3.5 6z"/>',
+    user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+    ruler:'<path d="M21.3 8.7 8.7 21.3a1 1 0 0 1-1.4 0l-4.6-4.6a1 1 0 0 1 0-1.4L15.3 2.7a1 1 0 0 1 1.4 0l4.6 4.6a1 1 0 0 1 0 1.4z"/><path d="m7.5 10.5 2 2M10.5 7.5l2 2M13.5 4.5l2 2M4.5 13.5l2 2"/>',
+    refresh:'<path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/>',
+    plus:'<path d="M12 5v14M5 12h14"/>',
+    crop:'<path d="M6 2v14a2 2 0 0 0 2 2h14"/><path d="M18 22V8a2 2 0 0 0-2-2H2"/>',
+    flip:'<path d="M12 3v18"/><path d="M8 7l-5 5 5 5z"/><path d="M16 7l5 5-5 5z"/>',
+    trash:'<path d="M3 6h18"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>',
+    hand:'<path d="M18 11V6a2 2 0 0 0-4 0v5"/><path d="M14 10V4a2 2 0 0 0-4 0v6"/><path d="M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-6-2.3l-3.6-3.6a2 2 0 0 1 2.8-2.8L7 15"/>',
+    ear:'<path d="M6 8.5a6.5 6.5 0 1 1 13 0c0 6-6 6-6 10a3.5 3.5 0 1 1-7 0"/><path d="M15 8.5a2.5 2.5 0 0 0-5 0v1a2 2 0 1 1 0 4"/>',
+    flower:'<circle cx="12" cy="12" r="3"/><path d="M12 16.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 1 1 4.5 4.5 4.5 4.5 0 1 1-4.5 4.5"/><path d="M12 7.5V9M7.5 12H9M16.5 12H15M12 16.5V15M8 8l1.9 1.9M14.1 9.9 16 8M8 16l1.9-1.9M14.1 14.1 16 16"/>',
+    layers:'<path d="M12 2 2 7l10 5 10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>',
+    grid:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>',
+    rotate:'<path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/>',
+    book:'<path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/>',
+    box:'<path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/>',
+    wand:'<path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8 19 13M17.8 6.2 19 5M3 21l9-9M12.2 6.2 11 5"/>',
+    bust:'<path d="M9.5 3h5v5.5c0 1.6 1.2 2.6 3 3.5 2 1 3 2.6 3 4.5V19h-17v-2.5c0-1.9 1-3.5 3-4.5 1.8-.9 3-1.9 3-3.5z"/><path d="M8 22h8"/>',
+    camera:'<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3.5"/>',
+    square:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17h10"/>',
+    necklace:'<path d="M4 3c0 6.5 3.6 11 8 11s8-4.5 8-11"/><path d="M12 14v1.5"/><path d="M12 15.5l2.2 3-2.2 2.5-2.2-2.5z"/>',
+    ring:'<circle cx="12" cy="15" r="6"/><path d="M9.5 6.5 12 3l2.5 3.5L12 9z"/>'
+  };
+  function ico_(n,size){ const p=ICONS[n]||ICONS.gem; const z=size||16; return '<svg class="icn" width="'+z+'" height="'+z+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>'; }
+  document.querySelectorAll('i[data-ic]').forEach(el=>{ el.outerHTML=ico_(el.getAttribute('data-ic'), el.closest('.drop-ic')?26:16); });
+
+  /* Look-card icons: colour swatch for velvet/stand looks, a matching line icon for the rest */
+  const LOOK_SWATCH={'velvet':'#141414','v-navy':'#1b2a63','v-emerald':'#0f5c43','v-maroon':'#5a1622','v-purple':'#4b2566','v-teal':'#0f5a66','v-crimson':'#8e1b2b','v-charcoal':'#3a3a3d','v-rust':'#9a4a2b','v-choco':'#4a2c1e','v-blush':'#e9c3c8','v-ivory':'#efe6d4','n-black-stand':'#0d0d0d'};
+  const LIGHT_SW=['v-blush','v-ivory'];
+  function lookSwatch(l){ return LOOK_SWATCH[l.id]||null; }
+  function lookIconStyle(l){ const c=lookSwatch(l); return c?' style="background:'+c+';border-color:'+c+';color:'+(LIGHT_SW.includes(l.id)?'#3a2a20':'#f3eee4')+'"':''; }
+  function lookIcon(l){
+    const id=l.id, t=(l.title+' '+l.sub).toLowerCase();
+    if(lookSwatch(l)) return ico_('bust',18);
+    if(l.mode==='enhance') return ico_('wand',18);
+    if(/surprise|random|positions|smartbg/.test(id+' '+t)) return ico_('shuffle',18);
+    if(l.mode==='model'){
+      const z=(typeof LOOK_ZONES!=='undefined'&&LOOK_ZONES[id])||[];
+      if(/palm|held|hand|haath|ungli|fingertip|touch/.test(id+' '+t) && !/neck/.test(id)) return ico_('hand',18);
+      if(z.length===1&&z[0]==='hand') return ico_('hand',18);
+      if(z.length===1&&z[0]==='ear') return ico_('ear',18);
+      return ico_('user',18);
+    }
+    if(/grid|lineup/.test(id)) return ico_('grid',18);
+    if(/set|main-image/.test(id)) return ico_('layers',18);
+    if(/book/.test(id)) return ico_('book',18);
+    if(/box/.test(id)) return ico_('box',18);
+    if(/flower|rose|blossom|marigold|maroon|floral|petal/.test(id+' '+t)) return ico_('flower',18);
+    if(/backview|whiteback/.test(id)) return ico_('rotate',18);
+    if(/white|catalog|oval|plain|cream/.test(id)) return ico_('square',18);
+    if(/^n-/.test(id)) return ico_('necklace',18);
+    if(/^r-/.test(id)) return ico_('ring',18);
+    if(/^e-/.test(id)) return ico_('gem',18);
+    return ico_('camera',18);
+  }
+
   /* ---------- Tabs ---------- */
   /* Theme toggle (light default, remembers choice) */
   (function(){
@@ -522,8 +683,8 @@
     const ico=tt&&tt.querySelector('.tt-ico');
     const txt=tt&&tt.querySelector('.tt-txt');
     function apply(mode){
-      if(mode==='dark'){ document.documentElement.setAttribute('data-theme','dark'); if(ico)ico.textContent='☀️'; if(txt)txt.textContent='Light'; }
-      else{ document.documentElement.removeAttribute('data-theme'); if(ico)ico.textContent='🌙'; if(txt)txt.textContent='Dark'; }
+      if(mode==='dark'){ document.documentElement.setAttribute('data-theme','dark'); if(ico)ico.innerHTML=ico_('sun'); if(txt)txt.textContent='Light'; }
+      else{ document.documentElement.removeAttribute('data-theme'); if(ico)ico.innerHTML=ico_('moon'); if(txt)txt.textContent='Dark'; }
     }
     let mode='light';
     try{ const saved=localStorage.getItem('aabhaa-theme'); if(saved) mode=saved; }catch(e){}
@@ -634,7 +795,7 @@
         cempty.style.display='none';
         canvas.style.display='block';
         saveBtn.disabled=false; resetBtn.disabled=false;
-        status('Loaded ✓ — adjust the sliders.',true);
+        status('Loaded — adjust the sliders.',true);
         process();
       };
       im.onerror=()=>{
@@ -791,7 +952,7 @@
   const expSel=document.getElementById('exp-size');
   saveBtn.addEventListener('click',()=>{
     if(!img) return;
-    saveBtn.disabled=true; const old=saveBtn.textContent; saveBtn.textContent='Preparing…';
+    saveBtn.disabled=true; const old=saveBtn.innerHTML; saveBtn.innerHTML='<span class="spin"></span>Preparing…';
     setTimeout(()=>{
       try{
         const target=expSel?expSel.value:'orig';
@@ -813,9 +974,9 @@
           const a=document.createElement('a'); a.href=url; a.download='jewellery-'+Date.now()+'.png';
           document.body.appendChild(a); a.click(); a.remove();
           addThumb(canvas.toDataURL('image/png'), url);
-          saveBtn.disabled=false; saveBtn.textContent=old;
+          saveBtn.disabled=false; saveBtn.innerHTML=old;
         },'image/png');
-      }catch(e){ saveBtn.disabled=false; saveBtn.textContent=old; }
+      }catch(e){ saveBtn.disabled=false; saveBtn.innerHTML=old; }
     },30);
   });
   function addThumb(dataUrl, dlUrl){
@@ -1164,8 +1325,8 @@
       const b=document.createElement('button');
       b.className='look'; b.type='button';
       b.setAttribute('aria-pressed', currentLook&&currentLook.id===l.id?'true':'false');
-      const icCls = (l.id==='n-model-gradient') ? 'look-ic ic-white' : 'look-ic';
-      b.innerHTML='<span class="'+icCls+'">'+l.icon+'</span><span class="look-tx"><strong>'+l.title+'</strong><em>'+l.sub+'</em></span>';
+      const icCls = lookSwatch(l) ? 'look-ic sw-ic' : 'look-ic';
+      b.innerHTML='<span class="'+icCls+'"'+lookIconStyle(l)+'>'+lookIcon(l)+'</span><span class="look-tx"><strong>'+l.title+'</strong><em>'+l.sub+'</em></span>';
       b.addEventListener('click',()=>{
         currentLook=l; currentCfg=l.make();
         [...looksEl.children].forEach(c=>c.setAttribute('aria-pressed','false'));
@@ -1717,7 +1878,7 @@
       const a=document.createElement('a');
       a.href=cv.toDataURL('image/png'); a.download='jewellery-sized-'+Date.now()+'.png';
       document.body.appendChild(a); a.click(); a.remove();
-      setNote('Download ho gaya ✓',true);
+      setNote('Download ho gaya.',true);
     });
   })();
 
@@ -1884,8 +2045,8 @@
       // apply / cancel bar
       const bar=document.createElement('div');
       bar.style.cssText='position:absolute;left:50%;bottom:10px;transform:translateX(-50%);display:flex;gap:8px;z-index:52';
-      const applyB=document.createElement('button'); applyB.className='btn primary'; applyB.textContent='✓ Crop apply';
-      const cancelB=document.createElement('button'); cancelB.className='btn ghost'; cancelB.textContent='✕ Cancel';
+      const applyB=document.createElement('button'); applyB.className='btn primary'; applyB.innerHTML=ico_('check')+'Crop apply';
+      const cancelB=document.createElement('button'); cancelB.className='btn ghost'; cancelB.innerHTML=ico_('x')+'Cancel';
       bar.appendChild(applyB); bar.appendChild(cancelB); stage.appendChild(bar);
       cropUI=[box,bar].concat(handleEls.map(h=>h.el));
       cancelB.addEventListener('click',endCrop);
@@ -1939,7 +2100,7 @@
             const a=document.createElement('a');
             a.href=cv.toDataURL('image/png'); a.download='jewellery-set-'+Date.now()+'.png';
             document.body.appendChild(a); a.click(); a.remove();
-            setNote('Download ho gaya ✓',true);
+            setNote('Download ho gaya.',true);
           }
         };
         im.onerror=()=>{ if(--pending===0){} };
@@ -1963,7 +2124,7 @@
 
   /* Position / angle selector (design stays locked) */
   const POSITIONS_D=[
-    {k:'auto',t:'✨ Auto (look decide kare)',d:null},
+    {k:'auto',t:'Auto (look decide kare)',d:null},
     {k:'front',t:'Front view',d:'photographed straight-on from the front'},
     {k:'angle',t:'45° angle',d:'photographed from a flattering 45-degree angle'},
     {k:'side',t:'Side view',d:'photographed from a gentle side-profile angle'},
@@ -1971,7 +2132,7 @@
     {k:'hand',t:'Held in hand',d:'held delicately between fingertips to show its scale'},
     {k:'macro',t:'Macro detail',d:'a very close macro detail shot of the piece'},
     {k:'flat',t:'Flat lay (top-down)',d:'laid flat and photographed top-down, neatly arranged'},
-    {k:'random',t:'🎲 Random har baar',d:null}
+    {k:'random',t:'Random har baar',d:null}
   ];
   let posMode='auto', posDesc='photographed straight-on from the front';
   const posEl=document.getElementById('c-pos');
@@ -2058,12 +2219,182 @@
     reader.readAsDataURL(f);
   }
 
+  /* ---------- Direct image generation via Gemini API ---------- */
+  (function(){
+    const $=id=>document.getElementById(id);
+    const keyIn=$('gen-key'), remember=$('gen-key-remember');
+    const modelSel=$('gen-model'), sizeSel=$('gen-size'), modelNote=$('gen-model-note');
+    const goBtn=$('gen-go'), againBtn=$('gen-again');
+    const statusEl=$('gen-status'), emptyEl=$('gen-empty'), loadEl=$('gen-load'), outImg=$('gen-img');
+    const dl4k=$('gen-dl4k'), dlOrig=$('gen-dlorig'), toEnh=$('gen-toenh'), hist=$('gen-hist');
+    const KEY_STORE='aabhaa-gemini-key', MODEL_STORE='aabhaa-gemini-model';
+    let prod=null, face=null, lastUrl=null, busy=false;
+
+    /* key handling (stays only in this browser) */
+    try{ const k=localStorage.getItem(KEY_STORE); if(k) keyIn.value=k; const m=localStorage.getItem(MODEL_STORE); if(m) modelSel.value=m; }catch(e){}
+    function saveKey(){ try{ if(remember.checked && keyIn.value.trim()) localStorage.setItem(KEY_STORE,keyIn.value.trim()); else localStorage.removeItem(KEY_STORE); }catch(e){} }
+    keyIn.addEventListener('change',saveKey);
+    remember.addEventListener('change',saveKey);
+    $('gen-key-show').addEventListener('click',()=>{ const s=keyIn.type==='password'; keyIn.type=s?'text':'password'; $('gen-key-show').innerHTML=s?ico_('eye-off')+'Chhupao':ico_('eye')+'Dikhao'; });
+    $('gen-key-clear').addEventListener('click',()=>{ keyIn.value=''; try{localStorage.removeItem(KEY_STORE);}catch(e){} setStatus('Key hata di gayi.',true); });
+
+    /* model / size rules */
+    function isNew(m){ return /gemini-3/.test(m) && !/lite/.test(m); }
+    function syncModel(){
+      const m=modelSel.value;
+      [...sizeSel.options].forEach(o=>{ o.disabled = !isNew(m) && o.value!=='1K'; });
+      if(!isNew(m)) sizeSel.value='1K';
+      const notes={
+        'gemini-2.5-flash-image':'Free tier wala model. 1K image banegi, “4K download” use badha kar sharp karega.',
+        'gemini-3.1-flash-lite-image':'Sabse sasta paid model (~₹1.5–3/image). Free tier par shayad na chale.',
+        'gemini-3.1-flash-image':'Paid model — 4K par ~₹13/image. Billing ON honi chahiye.',
+        'gemini-3-pro-image':'Best quality, paid — 4K par ~₹20/image. Billing ON honi chahiye.'
+      };
+      modelNote.textContent=notes[m]||'';
+      try{ localStorage.setItem(MODEL_STORE,m); }catch(e){}
+    }
+    modelSel.addEventListener('change',syncModel); syncModel();
+
+    /* uploads */
+    function readImage(file,cb){
+      if(!file || !/^image\//.test(file.type)){ setStatus('Image file (JPG/PNG) daaliye.'); return; }
+      const r=new FileReader();
+      r.onload=()=>{ const im=new Image(); im.onload=()=>{
+        // downscale very large photos so upload stays fast (max 2048px)
+        const mx=2048, sc=Math.min(1,mx/Math.max(im.naturalWidth,im.naturalHeight));
+        const c=document.createElement('canvas'); c.width=Math.round(im.naturalWidth*sc); c.height=Math.round(im.naturalHeight*sc);
+        c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+        const url=c.toDataURL('image/jpeg',0.93);
+        cb({url:url,mime:'image/jpeg',data:url.split(',')[1]});
+      }; im.onerror=()=>setStatus('Ye image nahi khuli. iPhone HEIC ho to pehle JPG me convert karein.'); im.src=r.result; };
+      r.readAsDataURL(file);
+    }
+    function wireDrop(dropId,fileId,prevId,set){
+      const d=$(dropId), f=$(fileId), p=$(prevId);
+      const take=file=>readImage(file,res=>{ set(res); p.src=res.url; d.classList.add('has'); setStatus(''); });
+      d.addEventListener('click',()=>f.click());
+      d.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();f.click();} });
+      ['dragover','dragenter'].forEach(ev=>d.addEventListener(ev,e=>{e.preventDefault();d.classList.add('drag');}));
+      ['dragleave','drop'].forEach(ev=>d.addEventListener(ev,e=>{e.preventDefault();d.classList.remove('drag');}));
+      d.addEventListener('drop',e=>{ const x=e.dataTransfer&&e.dataTransfer.files[0]; if(x) take(x); });
+      f.addEventListener('change',()=>{ if(f.files[0]) take(f.files[0]); f.value=''; });
+    }
+    wireDrop('gen-drop','gen-file','gen-prev',r=>prod=r);
+    wireDrop('gen-fdrop','gen-ffile','gen-fprev',r=>face=r);
+
+    function setStatus(msg,ok){
+      statusEl.style.display=msg?'block':'none';
+      statusEl.textContent=msg||'';
+      statusEl.style.color=ok?'var(--emerald)':'var(--danger)';
+    }
+    function friendlyError(code,msg){
+      const m=(msg||'').toLowerCase();
+      if(code===400 && /api key|api_key/.test(m)) return 'API key sahi nahi hai. AI Studio se key dobara copy karke paste karein.';
+      if(code===401||code===403) return 'Key ko is model ki permission nahi hai (ya key band ho gayi). Nayi key banakar try karein.';
+      if(code===429 && /limit: ?0|free_tier/.test(m)) return 'Ye model free tier me available nahi hai. Model dropdown se “Nano Banana — free tier” chuniye.';
+      if(code===429) return 'Free limit abhi khatam ho gayi (per-minute ya aaj ki). Thodi der baad ya kal try karein — tab tak prompt copy karke Gemini app use karein.';
+      if(code===404) return 'Ye model naam abhi available nahi mila. Dropdown se doosra model chuniye.';
+      if(code>=500) return 'Google ki taraf se abhi dikkat hai. 1–2 minute baad dobara try karein.';
+      return 'Error '+code+': '+(msg||'kuch galat hua');
+    }
+
+    async function generate(){
+      if(busy) return;
+      const key=keyIn.value.trim();
+      if(!key){ setStatus('Pehle apni API key paste karein (step 1).'); keyIn.focus(); return; }
+      if(!prod){ setStatus('Pehle jewellery ki photo daaliye (step 2).'); return; }
+      if(!currentLook){ setStatus('Upar Step 2 me koi style chuniye.'); return; }
+      saveKey();
+      const useFace = currentLook.mode==='model' && faceRefMode==='on';
+      if(useFace && !face){ setStatus('“Fixed face” ON hai — model ki face photo bhi daaliye, ya face option “Text se” kar dijiye.'); return; }
+      const prompt=buildPrompt();
+      const parts=[{text:prompt},{inline_data:{mime_type:prod.mime,data:prod.data}}];
+      if(useFace) parts.push({inline_data:{mime_type:face.mime,data:face.data}});
+      const m=modelSel.value;
+      const imageConfig={aspectRatio:'1:1'};
+      if(isNew(m)) imageConfig.imageSize=sizeSel.value;
+      const body={contents:[{role:'user',parts:parts}],generationConfig:{responseModalities:['TEXT','IMAGE'],imageConfig:imageConfig}};
+
+      busy=true; goBtn.disabled=true; againBtn.disabled=true;
+      goBtn.innerHTML='<span class="spin"></span>Ban rahi hai…';
+      emptyEl.style.display='none'; outImg.style.display='none'; loadEl.style.display='flex'; setStatus('');
+      try{
+        const res=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+encodeURIComponent(m)+':generateContent',{
+          method:'POST', headers:{'Content-Type':'application/json','x-goog-api-key':key}, body:JSON.stringify(body)
+        });
+        const json=await res.json().catch(()=>({}));
+        if(!res.ok){ throw {code:res.status,msg:(json.error&&json.error.message)||res.statusText}; }
+        const cand=(json.candidates||[])[0];
+        const outParts=(cand&&cand.content&&cand.content.parts)||[];
+        const imgPart=outParts.find(p=>p.inlineData||p.inline_data);
+        if(!imgPart){
+          const why=(json.promptFeedback&&json.promptFeedback.blockReason)||(cand&&cand.finishReason)||'';
+          const txt=outParts.map(p=>p.text).filter(Boolean).join(' ').slice(0,200);
+          throw {code:0,msg:'Image nahi bani'+(why?' ('+why+')':'')+'. '+(txt?'AI ne kaha: '+txt:'Style ya photo badal kar dobara try karein.')};
+        }
+        const d=imgPart.inlineData||imgPart.inline_data;
+        const url='data:'+(d.mimeType||d.mime_type||'image/png')+';base64,'+d.data;
+        showResult(url);
+        addHist(url);
+        setStatus('Image ban gayi — reference se milaa kar check kar lijiye.',true);
+      }catch(err){
+        loadEl.style.display='none';
+        if(!lastUrl) emptyEl.style.display='block'; else outImg.style.display='block';
+        if(err && err.code!==undefined) setStatus(err.code?friendlyError(err.code,err.msg):err.msg);
+        else setStatus('Internet ya network ki dikkat — connection check karke dobara try karein.');
+      }finally{
+        busy=false; goBtn.disabled=false; goBtn.innerHTML=ico_('sparkles')+'Image banao'; againBtn.disabled=!lastUrl;
+      }
+    }
+    function showResult(url){
+      lastUrl=url; outImg.src=url;
+      loadEl.style.display='none'; emptyEl.style.display='none'; outImg.style.display='block';
+      [dl4k,dlOrig,toEnh,againBtn].forEach(b=>b.disabled=false);
+    }
+    function addHist(url){
+      const t=document.createElement('div'); t.className='thumb';
+      const i=document.createElement('img'); i.src=url; i.alt='Generated shot'; t.appendChild(i);
+      t.addEventListener('click',()=>showResult(url));
+      hist.prepend(t);
+    }
+    goBtn.addEventListener('click',generate);
+    againBtn.addEventListener('click',()=>{ if(currentLook) currentCfg=currentLook.make(); if(posMode==='random') posDesc=rollPos(); generate(); });
+
+    function download(href,name){ const a=document.createElement('a'); a.href=href; a.download=name; document.body.appendChild(a); a.click(); a.remove(); }
+    dlOrig.addEventListener('click',()=>{ if(lastUrl) download(lastUrl,'aabhaa-ai-'+Date.now()+'.png'); });
+    dl4k.addEventListener('click',()=>{
+      if(!lastUrl) return;
+      const old=dl4k.innerHTML; dl4k.disabled=true; dl4k.innerHTML='<span class="spin"></span>4K bana rahe hain…';
+      const im=new Image();
+      im.onload=()=>setTimeout(()=>{
+        try{
+          const W=im.naturalWidth, H=im.naturalHeight, sc=3840/Math.max(W,H);
+          const w=Math.round(W*Math.max(1,sc)), h=Math.round(H*Math.max(1,sc));
+          const c=document.createElement('canvas'); c.width=w; c.height=h;
+          const cx=c.getContext('2d',{willReadFrequently:true}); cx.imageSmoothingEnabled=true; cx.imageSmoothingQuality='high';
+          stepDraw(cx,im,W,H,w,h);
+          if(sc>1.05){ const id=sharpen(cx.getImageData(0,0,w,h),w,h,0.22); cx.putImageData(id,0,0); }
+          c.toBlob(b=>{ const u=URL.createObjectURL(b); download(u,'aabhaa-4k-'+Date.now()+'.png'); setTimeout(()=>URL.revokeObjectURL(u),4000); dl4k.disabled=false; dl4k.innerHTML=old; },'image/png');
+        }catch(e){ dl4k.disabled=false; dl4k.innerHTML=old; setStatus('4K banane me dikkat — “Original download” use karein.'); }
+      },30);
+      im.src=lastUrl;
+    });
+    toEnh.addEventListener('click',()=>{
+      if(!lastUrl) return;
+      fetch(lastUrl).then(r=>r.blob()).then(b=>{
+        loadFile(new File([b],'ai-shot.png',{type:b.type||'image/png'}));
+        document.getElementById('tab-enhance').click();
+        window.scrollTo({top:0,behavior:'smooth'});
+      });
+    });
+  })();
+
   /* Copy ultra-HQ prompt */
   document.getElementById('copy').addEventListener('click',()=>{
     const text=buildPrompt();
     navigator.clipboard?.writeText(text).then(()=>{
-      const b=document.getElementById('copy'); const o=b.textContent;
-      b.textContent='Copied ✓'; setTimeout(()=>b.textContent=o,1500);
+      const b=document.getElementById('copy'); const o=b.innerHTML;
+      b.innerHTML=ico_('check')+'Copied'; setTimeout(()=>b.innerHTML=o,1500);
     }).catch(()=>{});
   });
 
@@ -2072,8 +2403,8 @@
     if(currentLook) currentCfg=currentLook.make();
     if(posMode==='random') posDesc=rollPos();
     buildPrompt();
-    const b=document.getElementById('shuffle'); const o=b.textContent;
-    b.textContent='🎲 Naya ✓'; setTimeout(()=>b.textContent=o,900);
+    const b=document.getElementById('shuffle'); const o=b.innerHTML;
+    b.innerHTML=ico_('check')+'Naya variation ready'; setTimeout(()=>b.innerHTML=o,900);
   });
 
   /* ---------- Video prompt builder ---------- */
@@ -2134,8 +2465,8 @@
     document.getElementById('v-copy').addEventListener('click',()=>{
       const t=vBuild();
       navigator.clipboard?.writeText(t).then(()=>{
-        const b=document.getElementById('v-copy'); const o=b.textContent;
-        b.textContent='Copied ✓'; setTimeout(()=>b.textContent=o,1500);
+        const b=document.getElementById('v-copy'); const o=b.innerHTML;
+        b.innerHTML=ico_('check')+'Copied'; setTimeout(()=>b.innerHTML=o,1500);
       }).catch(()=>{});
     });
     document.getElementById('v-shuffle').addEventListener('click',()=>{
@@ -2146,8 +2477,8 @@
       const mvEl=document.getElementById('v-move'); const mvLabel=(MOVE_V.find(m=>m[1]===vMove)||[])[0];
       [...mvEl.children].forEach(c=>c.setAttribute('aria-pressed', c.textContent===mvLabel));
       vBuild();
-      const b=document.getElementById('v-shuffle'); const o=b.textContent;
-      b.textContent='🎲 Naya ✓'; setTimeout(()=>b.textContent=o,900);
+      const b=document.getElementById('v-shuffle'); const o=b.innerHTML;
+      b.innerHTML=ico_('check')+'Naya variation ready'; setTimeout(()=>b.innerHTML=o,900);
     });
   })();
 })();
