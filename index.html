@@ -10,22 +10,22 @@
 <style>
   :root{
     /* LIGHT THEME (default) — matches the shop */
-    --ink:#282c3f;          /* dark text */
+    --ink:#2b2226;          /* dark text */
     --panel:#ffffff;
     --panel-2:#faf6f3;
-    --line:#ededf0;
-    --ivory:#282c3f;        /* primary text on light bg */
-    --muted:#7e808c;
-    --gold:#8a6a2f;
-    --gold-soft:#8a6a2f;    /* single accent (muted gold) */
+    --line:#ece6e3;
+    --ivory:#2b2226;        /* primary text on light bg */
+    --muted:#86797d;
+    --gold:#723345;
+    --gold-soft:#723345;    /* single accent (wine) */
     --emerald:#1f7a5a;
-    --accent:#23263a;       /* primary buttons */
-    --accent-hover:#363a55;
+    --accent:#723345;       /* primary buttons (wine) */
+    --accent-hover:#5c2837;
     --on-accent:#ffffff;
     --danger:#c96a4b;
     --app-bg:#ffffff;
-    --shadow:0 2px 16px rgba(40,44,63,.08);
-    --shadow-hover:0 8px 28px rgba(40,44,63,.14);
+    --shadow:0 2px 16px rgba(60,30,40,.06);
+    --shadow-hover:0 8px 28px rgba(60,30,40,.12);
     --radius:14px;
   }
   [data-theme="dark"]{
@@ -36,13 +36,13 @@
     --line:#332f27;
     --ivory:#f3eee4;
     --muted:#9a9284;
-    --gold:#c9a24b;
-    --gold-soft:#e0c583;
+    --gold:#c98a9b;
+    --gold-soft:#d9a3b1;
     --emerald:#3d8a6d;
     --danger:#c96a4b;
-    --accent:#c9a24b;
-    --accent-hover:#d6b264;
-    --on-accent:#17140e;
+    --accent:#9a4a60;
+    --accent-hover:#ab5a70;
+    --on-accent:#ffffff;
     --app-bg:#131210;
     --shadow:0 2px 16px rgba(0,0,0,.3);
     --shadow-hover:0 8px 28px rgba(0,0,0,.45);
@@ -61,19 +61,21 @@
   .wrap{max-width:1180px;margin:0 auto;padding:28px 22px 80px}
 
   /* Header */
-  header.top{position:relative;display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:26px}
-  .theme-toggle{position:absolute;top:-4px;right:0;display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--panel-2);color:var(--ivory);font-family:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;transition:.15s;box-shadow:var(--shadow)}
+  header.top{display:grid;grid-template-columns:1fr auto auto;grid-template-areas:'brand hint toggle';align-items:center;column-gap:24px;row-gap:6px;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
+  header.top .brand{grid-area:brand}
+  header.top .hint{grid-area:hint;justify-self:end}
+  .theme-toggle{grid-area:toggle;justify-self:end;display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--panel-2);color:var(--ivory);font-family:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;transition:.15s;box-shadow:var(--shadow)}
   .theme-toggle:hover{border-color:var(--ivory)}
   .theme-toggle .tt-ico{display:inline-flex;line-height:1}
   .brand{display:flex;flex-direction:column;gap:2px}
   .brand h1{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:40px;letter-spacing:1px;margin:0;line-height:1}
   .brand h1 .mark{color:var(--gold)}
   .brand .tag{display:block;font-size:9px;color:var(--muted);letter-spacing:.28em;text-transform:uppercase;font-weight:600;margin-top:3px}
-  .top .hint{font-size:13px;color:var(--muted);max-width:320px;text-align:right;line-height:1.5}
+  .top .hint{font-size:13px;color:var(--muted);max-width:380px;text-align:right;line-height:1.5;margin:0}
 
   /* Tabs */
-  .tabs{display:flex;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px;width:max-content;margin-bottom:24px}
-  .tab{appearance:none;border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:9px 20px;border-radius:999px;cursor:pointer;transition:.2s}
+  .tabs{display:inline-flex;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:4px;margin-bottom:24px;max-width:100%}
+  .tab{appearance:none;border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:9px 20px;white-space:nowrap;border-radius:999px;cursor:pointer;transition:.2s}
   .tab[aria-selected="true"]{background:var(--accent);color:var(--on-accent);font-weight:600}
   .tab:focus-visible{outline:2px solid var(--gold-soft);outline-offset:2px}
 
@@ -131,7 +133,7 @@
   .retap b{color:var(--gold-soft);font-weight:600}
 
   /* Studio steps */
-  .step{display:flex;align-items:baseline;gap:12px;margin:26px 0 14px}
+  .step{display:flex;align-items:center;gap:12px;margin:26px 0 14px}
   .step-k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-accent);background:var(--accent);padding:4px 10px;border-radius:999px;font-weight:700;flex:none}
   .step-h{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:700;letter-spacing:.3px;margin:0}
 
@@ -180,8 +182,8 @@
   .toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13.5px;padding:8px 0}
   .switch{position:relative;width:42px;height:24px;flex:none}
   .switch input{opacity:0;width:0;height:0}
-  .slider-t{position:absolute;inset:0;background:var(--line);border-radius:999px;transition:.2s;cursor:pointer}
-  .slider-t:before{content:"";position:absolute;height:18px;width:18px;left:3px;top:3px;background:var(--ivory);border-radius:50%;transition:.2s}
+  .slider-t{position:absolute;inset:0;background:#d9d0cd;border-radius:999px;transition:.2s;cursor:pointer}
+  .slider-t:before{content:"";position:absolute;height:18px;width:18px;left:3px;top:3px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);border-radius:50%;transition:.2s}
   .switch input:checked + .slider-t{background:var(--accent)}
   .switch input:checked + .slider-t:before{transform:translateX(18px);background:var(--on-accent)}
 
@@ -202,7 +204,7 @@
   .thumb a.dl{position:absolute;right:6px;bottom:6px;background:rgba(19,18,16,.8);color:#fff;font-size:11px;padding:4px 8px;border-radius:6px;text-decoration:none;border:1px solid var(--line)}
 
   /* Prompt box */
-  .promptbox{background:var(--panel-2);border:1px solid var(--line);border-radius:11px;padding:15px;font-size:14px;line-height:1.6;color:var(--ivory);min-height:96px;white-space:pre-wrap}
+  .promptbox{background:var(--panel-2);border:1px solid var(--line);border-radius:11px;padding:15px;font-size:13.5px;line-height:1.6;color:var(--ivory);min-height:96px;max-height:280px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}
   .promptbox .ph{color:var(--muted)}
   .note{font-size:12.5px;color:var(--muted);margin-top:10px}
   .note a{color:var(--gold-soft)}
@@ -223,11 +225,47 @@
   .gen-drop-tx small{color:var(--muted);font-size:12px}
   .gen-drop.has img{display:block!important}
   .gen-drop.has .gen-drop-tx{display:none}
-  @media (max-width:520px){.gen-uploads{grid-template-columns:1fr!important}}
+  @media (max-width:340px){.gen-uploads{grid-template-columns:1fr!important}}
   #gen-img{display:none;max-width:100%;max-height:600px;border-radius:10px}
   #gen-hist .thumb{cursor:pointer}
   .drop-ic{display:flex;justify-content:center;color:var(--muted)}
   .drop-ic .icn{width:26px;height:26px}
+
+  /* ---------- Responsive polish ---------- */
+  img,canvas,video{max-width:100%}
+  .card,.look-tx,.chips{min-width:0}
+  .look-tx strong,.look-tx em{overflow-wrap:anywhere}
+  .step{flex-wrap:wrap;row-gap:6px}
+  .btnrow .btn{white-space:nowrap}
+  @media (max-width:640px){
+    .wrap{padding:18px 14px 60px}
+    header.top{grid-template-columns:1fr auto;grid-template-areas:'brand toggle' 'hint hint';padding-bottom:16px;margin-bottom:18px}
+    header.top .hint{justify-self:start;text-align:left;max-width:none;font-size:12.5px}
+    .brand h1{font-size:30px}
+    .brand .tag{letter-spacing:.2em}
+    .theme-toggle{padding:7px 12px}
+    .tabs{display:grid;grid-template-columns:repeat(3,1fr);width:100%;border-radius:14px}
+    .tab{padding:10px 4px;font-size:10.5px;letter-spacing:.03em;border-radius:10px;white-space:normal;line-height:1.25}
+    .card{padding:16px;border-radius:12px}
+    .card h3{font-size:21px}
+    .step{margin:22px 0 12px;gap:10px}
+    .step-h{font-size:20px;line-height:1.25}
+    .chip{font-size:12.5px;padding:7px 11px}
+    .look{padding:11px 12px;gap:11px}
+    .btnrow{gap:8px}
+    .btnrow .btn{flex:1 1 calc(50% - 8px);padding:11px 12px;font-size:13.5px}
+    .btnrow .btn.primary:first-child{flex-basis:100%}
+    .kv{grid-template-columns:1fr}
+    .promptbox{max-height:220px}
+    .gal-grid{grid-template-columns:repeat(3,1fr);gap:8px}
+    #sl-stage{max-width:100%}
+    #setlayout-tool .btnrow:first-of-type .btn:not(.primary){flex-basis:calc(33.33% - 6px);padding:10px 6px;font-size:12.5px;gap:6px}
+    .key-row .btn{flex:1 1 0}
+    .gen-drop{min-height:112px}
+  }
+  @media (min-width:641px){
+    .btnrow .btn{min-width:150px}
+  }
   footer{margin-top:50px;border-top:1px solid var(--line);padding-top:18px;font-size:12px;color:var(--muted);text-align:center}
 </style>
 </head>
@@ -434,7 +472,7 @@
       <p class="sub">Upar chuni hui style + prompt se image yahin ban jayegi. Apni free Google AI Studio key daaliye — key sirf aapke browser me rehti hai, seedha Google ko jaati hai.</p>
 
       <label class="lbl">1 · API key</label>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <div class="key-row" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
         <input type="password" id="gen-key" placeholder="Apni Gemini API key yahan paste karein" autocomplete="off" style="flex:1;min-width:220px">
         <button class="btn ghost" id="gen-key-show" type="button"><i data-ic="eye"></i>Dikhao</button>
         <button class="btn ghost" id="gen-key-clear" type="button"><i data-ic="x"></i>Key hatao</button>
@@ -2292,7 +2330,7 @@
       if(code===400 && /api key|api_key/.test(m)) return 'API key sahi nahi hai. AI Studio se key dobara copy karke paste karein.';
       if(code===401 && /token_type|access_token|unsupported/.test(m)) return 'Google ne is nayi “AQ.” key ko abhi is tareeke se accept nahi kiya (401). AI Studio me key dobara banakar try karein; na chale to batayein.';
       if(code===401||code===403) return 'Key ko is model ki permission nahi hai (ya key band ho gayi). Nayi key banakar try karein.';
-      if(code===429 && /limit: ?0|free_tier/.test(m)) return 'Ye model free tier me available nahi hai. Model dropdown se “Nano Banana — free tier” chuniye.';
+      if(code===429 && /limit: ?0|free_tier/.test(m)) return 'Google abhi aapke account ko API se image banane ka FREE quota nahi de raha (limit 0). Free me image banane ke liye: prompt copy karke Gemini app / AI Studio me photo ke saath paste karein. Direct yahan banane ke liye AI Studio me billing ON karni hogi.';
       if(code===429) return 'Free limit abhi khatam ho gayi (per-minute ya aaj ki). Thodi der baad ya kal try karein — tab tak prompt copy karke Gemini app use karein.';
       if(code===404) return 'Ye model naam abhi available nahi mila. Dropdown se doosra model chuniye.';
       if(code>=500) return 'Google ki taraf se abhi dikkat hai. 1–2 minute baad dobara try karein.';
