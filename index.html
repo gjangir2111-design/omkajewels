@@ -407,7 +407,7 @@
     </div>
 
     <div id="blush-wrap" style="display:none;margin-top:18px">
-      <label class="lbl">Fabric colour chuniye — soft light shade (design same rahegi)</label>
+      <label class="lbl">Background colour chuniye — light shade (design same rahegi)</label>
       <div class="chips" id="c-blush"></div>
     </div>
 
@@ -679,6 +679,7 @@
     camera:'<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3.5"/>',
     square:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17h10"/>',
     necklace:'<path d="M4 3c0 6.5 3.6 11 8 11s8-4.5 8-11"/><path d="M12 14v1.5"/><path d="M12 15.5l2.2 3-2.2 2.5-2.2-2.5z"/>',
+    palette:'<circle cx="13.5" cy="6.5" r="1"/><circle cx="17.5" cy="10.5" r="1"/><circle cx="8.5" cy="7.5" r="1"/><circle cx="6.5" cy="12.5" r="1"/><path d="M12 2a10 10 0 0 0 0 20c1.7 0 2-1.3 2-2.2 0-.5-.2-.9-.5-1.3-.3-.3-.5-.8-.5-1.3 0-1.1.9-2 2-2h2.3A5.7 5.7 0 0 0 22 9.5C22 5.4 17.5 2 12 2z"/>',
     ring:'<circle cx="12" cy="15" r="6"/><path d="M9.5 6.5 12 3l2.5 3.5L12 9z"/>'
   };
   function ico_(n,size){ const p=ICONS[n]||ICONS.gem; const z=size||16; return '<svg class="icn" width="'+z+'" height="'+z+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>'; }
@@ -692,6 +693,7 @@
   function lookIcon(l){
     const id=l.id, t=(l.title+' '+l.sub).toLowerCase();
     if(lookSwatch(l)) return ico_('bust',18);
+    if(l.ic) return ico_(l.ic,18);
     if(l.mode==='enhance') return ico_('wand',18);
     if(/surprise|random|positions|smartbg/.test(id+' '+t)) return ico_('shuffle',18);
     if(l.mode==='model'){
@@ -1330,6 +1332,187 @@
       make:()=>({scene:'a warm festive setting with soft golden bokeh',light:'warm festive lighting',pose:'bridal styling with dupatta and traditional makeup, graceful three-quarter view'})}
   ];
 
+
+  /* ================= Styles for the remaining categories ================= */
+  const L_=DESIGN_COLOUR_LOCK;
+  const pick=v=>typeof v==='function'?v():v;
+  const FL=(cat,id,ic,title,sub,scene,light,frame)=>({id,cat,ic,icon:'',title,sub,mode:'flat',make:()=>({scene:pick(scene),light:pick(light),frame:pick(frame)+L_})});
+  const MD=(cat,id,ic,title,sub,scene,light,pose)=>({id,cat,ic,icon:'',title,sub,mode:'model',make:()=>({scene:pick(scene),light:pick(light),pose:pick(pose)+L_})});
+  const BU=(cat,id,title,sub,scene,light,bg)=>({id,cat,ic:'bust',icon:'',title,sub,mode:'bust',make:()=>({scene:pick(scene),light:pick(light),bg:pick(bg)})});
+  const WHITE_BG='a pure seamless bright white background (#ffffff), clean e-commerce catalogue style with a very soft natural shadow beneath';
+  const BRIGHT='bright, even, clean and crisp studio lighting with sparkling highlights on every stone';
+  const SOFTDAY='soft bright natural daylight, clean and clear';
+  const WARM='warm soft festive lighting with a gentle golden glow';
+  const FESTIVE_BG=['rich maroon silk with a few fresh marigold flowers','deep red silk with scattered rose petals and a brass diya softly blurred','gold silk brocade with fine woven motifs','dark wood with marigold petals and warm diya bokeh','emerald silk with a few jasmine buds'];
+  const TRAD_OUTFIT=['a rich red bridal lehenga with a gold-bordered dupatta','a maroon silk saree with a zari border','an emerald-green silk saree with a gold border','a pastel pink georgette saree with delicate embroidery','a royal-blue Banarasi silk saree','a mustard-yellow silk kurta with a gota-patti dupatta'];
+  const RAJ_OUTFIT=['a traditional red Rajputi poshak with a gota-patti odhni','a deep pink leheriya Rajputi poshak with an odhni','a royal maroon velvet Rajputi poshak with zardozi work','a mustard-yellow Rajputi poshak with a mirror-work odhni'];
+  const MODEL_BG=['a soft warm beige studio backdrop','a soft blurred cream backdrop','a softly blurred warm festive background with golden bokeh','a clean soft grey studio backdrop','a softly blurred heritage haveli wall in warm sandstone'];
+  const REAL=' — PHOTOREALISM IS CRITICAL: a real photograph of a real woman with natural skin texture and fine pores (NOT airbrushed, NOT CGI), the jewellery worn correctly at its true real-life scale, crisp, sparkling and clearly visible as the hero of the shot';
+
+  const EXTRA_LOOKS=[
+    /* ---- Jhumka ---- */
+    FL('Jhumka','jh-white','square','White Catalog — Jhumka Pair','Pure white bg, dono jhumke latakte hue, front',WHITE_BG,BRIGHT,'the matching PAIR of jhumkas shown hanging upright side by side with a small even gap, both at the SAME height and turned FRONT-ON so the full dome/bell and its fringe of drops face the camera as a symmetric mirror-image pair, centred at true real-life proportions, tack-sharp crisp macro focus'),
+    FL('Jhumka','jh-festive','flower','Festive Silk + Marigold','Maroon/red silk, genda phool, festive mood',()=>rand(FESTIVE_BG),WARM,()=>'the matching PAIR of jhumkas resting gracefully on the fabric, '+rand(PRODUCT_POSES)+', their bells and hanging drops clearly visible, tack-sharp macro focus with soft shallow depth-of-field'),
+    FL('Jhumka','jh-stand','gem','Brass T-Stand Display','Jhumke brass stand par latakte, light 2-tone bg',()=>'an elegant slim polished brass T-bar jewellery stand on a pale wooden base, on a soft matte '+rand(LIGHT_FOLD)+' surface against a soft '+rand(LIGHT_FOLD)+' back wall',SOFTDAY,'the matching PAIR of jhumkas hanging from the brass rail side by side at the SAME height, hanging naturally with real weight and gravity, their front faces to the camera, tack-sharp focus, true-to-life proportions'),
+    FL('Jhumka','jh-wood','camera','Rustic Wood + Rose Petals','Dark wood table, gulab ki pankhudiyan',()=>'a warm rustic dark-wood surface with a few scattered '+rand(['red','pink','peach'])+' rose petals',()=>rand(['warm soft directional light','soft golden-hour glow']),()=>'the matching PAIR of jhumkas lying on the wood, one slightly overlapping the other, '+rand(PRODUCT_POSES)+', tack-sharp macro focus with soft shallow depth-of-field'),
+    FL('Jhumka','jh-held','hand','Ungliyon me pakda (macro)','Ek jhumka fingertips me, diya bokeh bg','a soft dreamy blurred background of warm diya lights and golden bokeh',WARM,'an extreme macro close-up of a single jhumka held delicately between the thumb and index fingertips, presented face-on so the bell and drops are fully visible, soft glossy natural nails, the jhumka tack-sharp and sparkling'),
+    MD('Jhumka','jh-m-side','ear','Model — Side profile (saree + gajra)','Kaan saaf, jasmine gajra, traditional',()=>rand(MODEL_BG)+', the model wearing '+rand(TRAD_OUTFIT)+' with her hair in a low bun with a white jasmine gajra',WARM,'a soft side-profile beauty shot cropped from the top of the head to the shoulders, hair tucked back so the ear is fully visible, the jhumka hanging naturally from the earlobe with real weight'+REAL),
+    MD('Jhumka','jh-m-touch','ear','Model — Haath jhumke ke paas (smile)','Three-quarter, halki muskaan, festive',()=>rand(MODEL_BG)+', the model wearing '+rand(TRAD_OUTFIT),'soft flattering beauty lighting','a warm three-quarter portrait with a soft natural smile, one hand raised with the fingertips lightly touching near the jhumka, both ears visible if natural'+REAL),
+
+    /* ---- Anklets (Payal) ---- */
+    FL('Anklets','an-white','square','White Catalog — Payal Pair','Dono payal soft curve me, pure white',WHITE_BG,BRIGHT,'the matching PAIR of anklets laid flat side by side, each opened into a soft graceful oval curve showing the full chain, ghungroo bells and motifs, centred and symmetric, tack-sharp macro focus, true-to-life scale'),
+    FL('Anklets','an-silk','flower','Pastel Silk + Flowers','Light silk fold, chhote phool, soft',()=>'softly draped '+rand(LIGHT_FOLD)+' silk with gentle folds and a few small fresh flowers at the edge of the frame',SOFTDAY,()=>'the matching PAIR of anklets resting gracefully on the silk in soft curves, '+rand(PRODUCT_POSES)+', every link and bell crisp, tack-sharp macro focus'),
+    FL('Anklets','an-block','camera','Wooden Block Drape','Payal lakdi ke block par latki hui',()=>'a smooth pale natural wooden block on a soft '+rand(LIGHT_FOLD)+' surface','soft warm directional light with gentle shadows','one anklet draped over the edge of the wooden block so its chain and bells hang naturally with gravity, the second anklet resting coiled beside it, tack-sharp macro focus'),
+    MD('Anklets','an-m-marble','user','Model — Pair white marble par','Pairon ka close-up, marble floor, clean',()=>'a clean polished white marble floor, the model’s bare feet with a soft natural pedicure, the hem of '+rand(['a cream silk saree','a pastel lehenga','a white linen dress'])+' just visible',SOFTDAY,'a close-up of both feet placed gracefully on the marble, one slightly ahead of the other, an anklet worn on each ankle resting naturally on the ankle bone'+REAL),
+    MD('Anklets','an-m-festive','user','Model — Pair alta + mehendi (bridal)','Traditional alta, mehendi, festive',()=>'a soft festive setting with scattered rose petals, the model’s feet decorated with red alta borders and delicate mehendi, the edge of '+rand(TRAD_OUTFIT)+' visible',WARM,'a close-up of both feet seen from a soft three-quarter angle, an anklet worn on each ankle hanging naturally, bells and motifs crisp'+REAL),
+    MD('Anklets','an-m-sit','user','Model — Baithe hue, ek pair aage','Lifestyle, pair crossed, soft bg',()=>rand(MODEL_BG)+', the model seated on a soft cushion',SOFTDAY,'a lifestyle crop of the model seated with legs gently crossed at the ankles, one foot forward, the anklets worn and clearly visible'+REAL),
+
+    /* ---- Pendant Set ---- */
+    FL('Pendant Set','ps-white','layers','Main Image — Pendant + Earrings','White bg, pendant V + dono earrings neeche',WHITE_BG,BRIGHT,'a clean catalogue main-image of the complete PENDANT SET: the chain opened into a graceful symmetrical V with the pendant hanging at the centre, and the two small matching earrings placed symmetrically lower-left and lower-right. ⚠ Each earring must be clearly SMALLER than the pendant. Soft mirror reflection beneath, tack-sharp macro focus, 1:1 square'),
+    BU('Pendant Set','ps-bust','Velvet Bust Display','Pendant bust par, earrings side me',()=>rand(['deep black velvet','deep maroon wine-red velvet','rich emerald-green velvet','soft ivory champagne velvet']),'dramatic soft spotlight with gentle falloff'),
+    FL('Pendant Set','ps-satin','gem','Satin Drape — Jewel Tone','Rich satin folds, set sparkle',()=>'rich '+rand(SATIN_BG)+' satin with soft luxurious folds','soft directional studio light with crisp sparkling highlights','the pendant set arranged gracefully on the satin — the chain following the folds with the pendant prominent and the two earrings placed neatly beside it, all pieces tack-sharp and sparkling'),
+    FL('Pendant Set','ps-gift','box','Gift Box (open)','Khula gift box, set andar sajaya',()=>'an elegant open '+rand(['blush-pink velvet','ivory satin','deep maroon velvet','navy velvet'])+' jewellery gift box on a soft neutral surface with a silk ribbon beside it',SOFTDAY,'the pendant set neatly presented inside the open box — pendant centred on the upper cushion and the two earrings on the lower cushion, true-to-life scale, tack-sharp macro focus'),
+    MD('Pendant Set','ps-model','user','Model — Neckline + earrings','Pendant gale me, dono earrings dikhe',()=>rand(MODEL_BG)+', the model wearing a simple elegant scoop-neck outfit, hair tucked behind both ears','soft flattering beauty lighting','a front-facing beauty crop from the lips to the upper chest, the pendant resting naturally on the chest and both matching earrings clearly visible'+REAL),
+
+    /* ---- Bangles ---- */
+    FL('Bangles','bg-white','square','White Catalog — Bangle Pair','Dono bangles khade, front + side',WHITE_BG,BRIGHT,'the matching PAIR of bangles standing upright on their edges, one in front and slightly overlapping the other at a gentle angle, showing both the front design and the thickness, tack-sharp macro focus, true-to-life scale'),
+    FL('Bangles','bg-stand','camera','Bangle Stand (cone)','Bangles stand par stacked',()=>'a slim tapered '+rand(['matte black velvet','ivory velvet','polished natural wood'])+' bangle display cone on a soft '+rand(LIGHT_FOLD)+' surface','soft directional studio light','the bangles stacked neatly on the display cone, their decorative faces turned toward the camera, tack-sharp focus, realistic weight'),
+    FL('Bangles','bg-festive','flower','Festive Silk + Marigold','Silk + genda, bangles flat-lay',()=>rand(FESTIVE_BG),WARM,()=>'the bangles laid in a gentle overlapping row on the fabric, '+rand(PRODUCT_POSES)+', tack-sharp macro focus'),
+    FL('Bangles','bg-macro','gem','Macro Detail — Single Bangle','Ek bangle tilted, stones close-up',()=>'a soft '+rand(SURFACE_COLORS)+' matte surface with a gentle sheen','soft directional light with crisp sparkling highlights','an extreme macro close-up of one bangle tilted on its edge so the carved/stone-set surface fills the frame, every stone and engraving crisp, soft shallow depth-of-field'),
+    MD('Bangles','bg-m-wrist','hand','Model — Kalai me pehne (mehendi)','Haath, mehendi, saree ka pallu',()=>'a soft warm backdrop, the model wearing '+rand(TRAD_OUTFIT)+', delicate bridal mehendi on her hands',WARM,'a close-up of both wrists held together gracefully in front of the body, the bangles worn and resting naturally on the wrists'+REAL),
+    MD('Bangles','bg-m-face','hand','Model — Haath chehre ke paas','Beauty portrait, bangles front',()=>rand(MODEL_BG)+', the model in '+rand(TRAD_OUTFIT),'soft flattering beauty lighting','a beauty portrait with one hand raised near the cheek so the bangles on the wrist sit prominently in the foreground'+REAL),
+
+    /* ---- Maang tikka ---- */
+    FL('Maang tikka','mt-white','square','White Catalog — Tikka','Seedha latka hua, pure white',WHITE_BG,BRIGHT,'the maang tikka shown hanging perfectly vertical — the hook and chain at the top and the pendant centred below — facing the camera flat-on, tack-sharp macro focus, true-to-life scale'),
+    FL('Maang tikka','mt-velvet','camera','Velvet Cushion','Chhota velvet cushion par tikka',()=>'a small plush '+rand(['deep maroon','royal red','emerald green','ivory'])+' velvet jewellery cushion on a soft neutral surface','soft directional light with sparkling highlights','the maang tikka resting on the cushion with the chain draped naturally over the top and the pendant centred on the front, tack-sharp macro focus'),
+    FL('Maang tikka','mt-petals','flower','Rose Petals Flat-lay','Cream silk + gulab pankhudiyan',()=>'soft cream silk with scattered '+rand(['red','pink','peach'])+' rose petals',SOFTDAY,'the maang tikka laid flat with its chain straightened upward and the pendant at the bottom, tack-sharp macro focus with soft shallow depth-of-field'),
+    MD('Maang tikka','mt-m-front','user','Model — Bridal front (maathe par)','Seedhi maang me tikka, bridal',()=>rand(MODEL_BG)+', the model in '+rand(TRAD_OUTFIT)+' with a neat centre hair parting',WARM,'a front-facing bridal portrait from the top of the head to the shoulders, the maang tikka worn in the centre parting with the pendant resting on the forehead just above the brows'+REAL),
+    MD('Maang tikka','mt-m-threeq','user','Model — Three-quarter + dupatta','Dupatta sir par, soft angle',()=>rand(MODEL_BG)+', the model in '+rand(TRAD_OUTFIT)+' with the dupatta draped softly over the back of her head',WARM,'a soft three-quarter bridal portrait with the chin slightly lowered, the maang tikka sitting centred along the parting and resting on the forehead'+REAL),
+
+    /* ---- Mangalsutra ---- */
+    FL('Mangalsutra','ms-white','square','White Catalog — V Drape','Pure white, black beads + pendant',WHITE_BG,BRIGHT,'the complete mangalsutra laid in a graceful symmetrical V shape with the black-bead chain on both sides and the pendant at the bottom centre, every bead and the pendant crisp, tack-sharp macro focus, true-to-life scale'),
+    FL('Mangalsutra','ms-redsilk','flower','Red Silk + Sindoor Box','Laal silk, sindoor dibbi, traditional',()=>'rich red silk with a small traditional silver sindoor box and a few marigold petals at the edge',WARM,'the mangalsutra draped gracefully on the silk with the pendant prominent, tack-sharp macro focus'),
+    FL('Mangalsutra','ms-macro','gem','Pendant Macro on Satin','Pendant close-up, satin blur',()=>'soft '+rand(SATIN_MACRO_BG)+' fabric','soft directional light with a bright catch-light on the pendant','an extreme macro close-up of the pendant with a short length of the black-bead chain sweeping away softly out of focus, tack-sharp pendant'),
+    MD('Mangalsutra','ms-m-saree','user','Model — Saree neckline (traditional)','Gale me, saree, subtle sindoor',()=>rand(MODEL_BG)+', the model in '+rand(TRAD_OUTFIT)+' with a subtle sindoor line in the parting',WARM,'a front-facing crop from the lips to the chest, the mangalsutra resting naturally around the neck with the pendant centred'+REAL),
+    MD('Mangalsutra','ms-m-modern','user','Model — Daily wear (modern)','Office/western outfit, minimal',()=>'a clean bright modern setting, the model wearing '+rand(['a crisp white shirt with an open collar','a soft beige blazer over a plain top','a pastel knit top with a round neck']),SOFTDAY,'a clean lifestyle crop of the neckline and collarbone, the mangalsutra worn as a delicate everyday piece'+REAL),
+
+    /* ---- Maang tikka + Mangalsutra set ---- */
+    FL('Maang tikka + Mangalsutra set','tm-white','layers','White Catalog — Dono pieces','Mangalsutra V + tikka upar centre',WHITE_BG,BRIGHT,'a clean set image: the mangalsutra laid in a symmetrical V with the pendant at the bottom, and the matching maang tikka placed vertically in the open space above the V, centred, both pieces tack-sharp, true relative scale'),
+    FL('Maang tikka + Mangalsutra set','tm-tray','flower','Pooja Thali / Red Velvet Tray','Laal velvet tray, marigold',()=>'a round brass tray lined with red velvet and a few marigold flowers, on a dark wood surface',WARM,'both pieces arranged neatly on the velvet — the mangalsutra in a soft curve and the maang tikka laid beside it, tack-sharp macro focus'),
+    MD('Maang tikka + Mangalsutra set','tm-model','user','Model — Bridal (dono pehne)','Tikka maathe par + mangalsutra gale me',()=>rand(MODEL_BG)+', the model in '+rand(TRAD_OUTFIT),WARM,'a front-facing bridal portrait from the top of the head to the chest, the maang tikka in the centre parting and the mangalsutra around the neck, both clearly visible'+REAL),
+
+    /* ---- Rajputi set ---- */
+    FL('Rajputi set','rj-white','layers','Main Image — Full Rajputi Set','Aad + earrings + tikka, pure white',WHITE_BG,BRIGHT,'a clean main image of the complete Rajputi set arranged symmetrically — the aad/necklace as the large hero in the centre, the earrings smaller on either side and any rakhdi/tikka placed above — only pieces present in the reference, tack-sharp macro focus, true relative scale'),
+    BU('Rajputi set','rj-bust','Royal Velvet Bust','Maroon/red velvet bust, royal look',()=>rand(['deep maroon wine-red velvet','rich crimson-red velvet','rich emerald-green velvet']),'warm royal spotlight with soft falloff'),
+    FL('Rajputi set','rj-heritage','camera','Heritage Jharokha','Haveli/jharokha feel, maroon silk',()=>'maroon silk draped on a carved sandstone ledge with a softly blurred Rajasthani jharokha window behind',WARM,'the Rajputi set arranged gracefully on the silk, the aad as the hero, tack-sharp focus'),
+    FL('Rajputi set','rj-thali','flower','Royal Thali (brass tray)','Brass thali, genda phool',()=>'a large ornate brass thali with red velvet lining and marigold flowers around the rim',WARM,'the set arranged neatly on the velvet in the thali, symmetric and balanced, tack-sharp macro focus'),
+    MD('Rajputi set','rj-m-front','user','Model — Rajputi poshak (front)','Bridal poshak, aad gale me',()=>rand(MODEL_BG)+', the model wearing '+rand(RAJ_OUTFIT),WARM,'a front-facing royal bridal portrait from the head to the chest, the aad worn close around the neck, earrings and any head piece clearly visible'+REAL),
+    MD('Rajputi set','rj-m-odhni','user','Model — Odhni ke saath (three-quarter)','Odhni sir par, soft angle',()=>rand(MODEL_BG)+', the model wearing '+rand(RAJ_OUTFIT)+' with the odhni draped over her head',WARM,'a graceful three-quarter portrait with eyes lowered, the jewellery set clearly visible framed by the odhni'+REAL),
+
+    /* ---- Nath (Nose Ring) ---- */
+    FL('Nath (Nose Ring)','nt-white','square','White Catalog — Nath','Nath + chain, pure white',WHITE_BG,BRIGHT,'the nath shown front-on with its ring open in a clean circle and its chain (if present) draping in a soft arc, tack-sharp macro focus, true-to-life scale'),
+    FL('Nath (Nose Ring)','nt-velvet','camera','Velvet / Silk Flat','Chhoti velvet par nath',()=>'soft '+rand(['deep maroon velvet','red silk','ivory velvet','emerald velvet']),'soft directional light with sparkling highlights','the nath laid gracefully with its chain in a soft curve, tack-sharp macro focus'),
+    FL('Nath (Nose Ring)','nt-held','hand','Ungli par (macro)','Fingertip par nath, bokeh','a soft warm blurred background with golden bokeh',WARM,'an extreme macro of the nath resting on a fingertip / held between thumb and index finger, face-on, tack-sharp and sparkling'),
+    MD('Nath (Nose Ring)','nt-m-side','user','Model — Side profile (chain kaan tak)','Nath naak me, chain kaan tak',()=>rand(MODEL_BG)+', the model in '+rand(TRAD_OUTFIT),WARM,'a soft side-profile bridal close-up, the nath worn on the nostril with its chain curving back to the hair near the ear'+REAL),
+    MD('Nath (Nose Ring)','nt-m-front','user','Model — Bridal front','Front portrait, nath saaf dikhe',()=>rand(MODEL_BG)+', the model in '+rand(TRAD_OUTFIT),WARM,'a front-facing bridal portrait cropped from the forehead to the chin, the nath worn on the nostril and clearly visible'+REAL),
+
+    /* ---- Choker AD Set ---- */
+    FL('Choker AD Set','ch-white','layers','Main Image — Choker + Earrings','White bg, choker upar, earrings neeche',WHITE_BG,BRIGHT,'a clean main image: the choker laid in a compact rounded U shape at the top, the two small matching earrings placed symmetrically below. ⚠ Earrings clearly smaller than the choker. Every American-diamond stone sparkling brilliantly, soft mirror reflection beneath, tack-sharp macro focus, 1:1 square'),
+    BU('Choker AD Set','ch-bust','Black Velvet Bust','Choker gale se chipka, earrings side',()=>rand(['deep black velvet','deep royal navy-blue velvet','deep maroon wine-red velvet']),'dramatic spotlight igniting AD sparkle, soft falloff'),
+    FL('Choker AD Set','ch-mirror','gem','Black Mirror Sparkle','Black acrylic, reflection, AD shine','polished black acrylic with a soft mirror reflection','crisp directional light making every AD stone flash brilliantly','the choker set arranged symmetrically with a clean reflection below, tack-sharp macro focus'),
+    FL('Choker AD Set','ch-satin','camera','Satin Drape — Jewel Tone','Rich satin, luxe',()=>'rich '+rand(SATIN_BG)+' satin with soft folds','soft studio light with crisp sparkle','the choker and earrings resting on the satin, choker as hero, tack-sharp macro focus'),
+    MD('Choker AD Set','ch-model','user','Model — Choker gale me (front)','Snug choker, off-shoulder/boat neck',()=>rand(MODEL_BG)+', the model in an elegant '+rand(['off-white boat-neck blouse','deep maroon velvet blouse','pastel pink saree']),'soft flattering beauty lighting','a front-facing crop from the lips to the collarbone, the choker sitting snugly around the neck and both earrings visible'+REAL),
+
+    /* ---- Studs ---- */
+    FL('Studs','st-white','square','White Catalog — Stud Pair','Dono studs front, pure white',WHITE_BG,BRIGHT,'the matching PAIR of studs side by side with a small even gap, turned fully front-on, posts hidden behind, symmetric, tack-sharp macro focus, true small scale'),
+    FL('Studs','st-marble','camera','Marble — Pair Macro','Pale marble, close macro','a soft pale marble surface with subtle veining',SOFTDAY,'the pair of studs resting on the marble, one slightly ahead of the other, shown large as a detailed macro, tack-sharp'),
+    FL('Studs','st-card','square','Blank Display Card','Studs card me lage, logo baad me','a small plain white jewellery card standing on a pale wooden easel against soft silk',SOFTDAY,'the pair of studs pushed through the card side by side at the centre, front-on, small at true scale, the card otherwise completely blank (no text, no logo)'),
+    FL('Studs','st-finger','hand','Fingertip Macro','Ek stud ungli par','a soft blurred pastel background',SOFTDAY,'an extreme macro of one stud resting on a fingertip, face-on, tack-sharp and sparkling'),
+    MD('Studs','st-m-ear','ear','Model — Kaan close-up','Earlobe par stud, saaf',()=>rand(MODEL_BG)+', hair tucked behind the ear',SOFTDAY,'a tight macro of the ear and jaw, the stud worn on the earlobe, sharp and sparkling'+REAL),
+
+    /* ---- AD Hathphool ---- */
+    FL('AD Hathphool','hp-white','square','White Catalog — Poora design','Ring + chains + bracelet flat',WHITE_BG,BRIGHT,'the hathphool laid flat and fully spread out in its natural hand shape — ring(s) at the top, connecting chains and the centre motif in the middle, bracelet at the bottom — symmetric, tack-sharp macro focus'),
+    FL('AD Hathphool','hp-velvet','camera','Velvet Flat-lay','Dark velvet par AD sparkle',()=>rand(['deep black velvet','deep maroon velvet','royal navy velvet']),'crisp directional light making every AD stone sparkle','the hathphool spread flat on the velvet in its hand shape, tack-sharp macro focus'),
+    MD('AD Hathphool','hp-m-back','hand','Model — Haath ka pichla hissa (mehendi)','Back of hand, bridal mehendi',()=>'a soft festive backdrop, the model with delicate bridal mehendi, wearing '+rand(TRAD_OUTFIT),WARM,'a close-up of the back of the hand with fingers gently spread, the hathphool worn correctly — ring on the finger, chains across the back of the hand, bracelet on the wrist'+REAL),
+    MD('AD Hathphool','hp-m-silk','hand','Model — Haath silk par','Haath silk par rakha',()=>'softly draped '+rand(LIGHT_FOLD)+' silk',SOFTDAY,'the hand resting elegantly on the silk, the hathphool worn and clearly visible'+REAL),
+    MD('AD Hathphool','hp-m-both','hand','Model — Dono haath (bridal)','Dono haath saath me, face ke paas',()=>rand(MODEL_BG)+', the model in '+rand(TRAD_OUTFIT),WARM,'both hands held together near the chin, the hathphool worn on the front hand and clearly visible'+REAL),
+
+    /* ---- AD Nose Pin ---- */
+    FL('AD Nose Pin','np-white','square','White Catalog — Macro','Tiny nose pin, bada macro',WHITE_BG,BRIGHT,'an extreme macro of the nose pin face-on, filling much of the frame, every stone crisp and sparkling'),
+    FL('AD Nose Pin','np-dish','camera','Mini Dish / Marble','Chhoti ceramic dish me','a tiny white ceramic jewellery dish on pale marble',SOFTDAY,'the nose pin resting in the dish, face up, tack-sharp macro focus'),
+    FL('AD Nose Pin','np-finger','hand','Fingertip Macro','Ungli par nose pin','a soft blurred neutral background',SOFTDAY,'an extreme macro of the nose pin on a fingertip, face-on, sparkling'),
+    MD('AD Nose Pin','np-m-side','user','Model — Naak side profile','Close-up, nose pin chamakta',()=>rand(MODEL_BG),SOFTDAY,'a tight side-profile close-up of the nose and cheek, the nose pin worn on the nostril, crisp and sparkling'+REAL),
+    MD('AD Nose Pin','np-m-front','user','Model — Front portrait','Natural makeup, pin saaf dikhe',()=>rand(MODEL_BG),'soft flattering beauty lighting','a front beauty portrait cropped from the forehead to the chin, the nose pin clearly visible'+REAL),
+
+    /* ---- Chain ---- */
+    FL('Chain','cn-white','square','White Catalog — Full Length','Poori chain oval me, clasp dikhe',WHITE_BG,BRIGHT,'the complete chain laid in a full oval loop with the clasp at the top, every link crisp and even, tack-sharp macro focus, true-to-life length'),
+    FL('Chain','cn-macro','gem','Link Macro','Links ka close-up',()=>'a soft '+rand(SURFACE_COLORS)+' matte surface','soft directional light with crisp highlights on the links','an extreme macro of a short section of the chain crossing the frame diagonally, the link pattern crisp, soft shallow depth-of-field'),
+    FL('Chain','cn-satin','camera','Satin Drape','Rich satin par chain',()=>'rich '+rand(SATIN_BG)+' satin with soft folds','soft studio light','the chain draped in a graceful S-curve over the satin folds, tack-sharp'),
+    MD('Chain','cn-palm','hand','Model — Hatheli me','Chain palm me, lifestyle','a softly blurred warm cream background',SOFTDAY,'the chain resting coiled in an open palm with one end draping over the fingers'+REAL),
+    MD('Chain','cn-neck','user','Model — Gale me (neckline)','Neckline crop, clean top',()=>rand(MODEL_BG)+', the model in '+rand(['a crisp white shirt with an open collar','a simple black round-neck top','a pastel V-neck top']),SOFTDAY,'a clean crop of the neck and collarbone with the chain worn and resting naturally'+REAL),
+
+    /* ---- Rakhadi ---- */
+    FL('Rakhadi','rk-white','square','White Catalog — Rakhadi','Dome + dori, pure white',WHITE_BG,BRIGHT,'the rakhadi (borla) shown with its domed front facing the camera and its thread/chain loop arranged neatly above, tack-sharp macro focus, true-to-life scale'),
+    FL('Rakhadi','rk-velvet','camera','Red Velvet Cushion','Laal velvet par rakhadi',()=>'a small plush '+rand(['red','maroon','emerald'])+' velvet cushion with gota lace edging',WARM,'the rakhadi resting on the cushion with its dome facing the camera, tack-sharp macro focus'),
+    FL('Rakhadi','rk-held','hand','Ungliyon me (macro)','Fingertips me rakhadi','a soft warm golden bokeh background',WARM,'an extreme macro of the rakhadi held between thumb and index finger, dome face-on, tack-sharp'),
+    MD('Rakhadi','rk-m-front','user','Model — Rajputi bridal (maathe par)','Rakhadi maathe ke beech me',()=>rand(MODEL_BG)+', the model wearing '+rand(RAJ_OUTFIT),WARM,'a front-facing bridal portrait, the rakhadi worn at the centre of the hairline just above the forehead'+REAL),
+    MD('Rakhadi','rk-m-odhni','user','Model — Odhni ke saath','Three-quarter, odhni sir par',()=>rand(MODEL_BG)+', the model wearing '+rand(RAJ_OUTFIT)+' with the odhni over her head',WARM,'a graceful three-quarter portrait, the rakhadi sitting at the hairline, framed by the odhni'+REAL)
+  ];
+
+  /* ---- extra styles so every category has at least 7 ---- */
+  EXTRA_LOOKS.push(
+    FL('Anklets','an-velvet','camera','Velvet Flat-lay','Dark velvet par payal chamakti',()=>rand(['deep maroon velvet','deep emerald velvet','deep black velvet','royal navy velvet']),'soft directional light with crisp sparkle on every bell','the matching PAIR of anklets laid in two soft mirrored curves on the velvet, every link and ghungroo crisp, tack-sharp macro focus'),
+
+    FL('Pendant Set','ps-marble','flower','Marble + Fresh Flowers','White marble, chhote phool',()=>'a polished white marble surface with a few small fresh '+rand(['white jasmine','pink rose','baby’s breath'])+' flowers at the edges',SOFTDAY,'the pendant set arranged in a clean layout — chain in a soft V with the pendant centred and the two small earrings below — tack-sharp macro focus'),
+    MD('Pendant Set','ps-m-smile','user','Model — Smile portrait (solid bg)','Front, halki muskaan, solid colour bg',()=>'a smooth solid '+rand(['dusty pink','warm peach','soft sage green','soft lavender','warm beige'])+' studio backdrop, the model in a simple pale neutral top','soft bright beauty lighting','a warm front-facing head-and-shoulders portrait with a genuine soft smile, the pendant on the chest and both earrings visible'+REAL),
+
+    FL('Bangles','bg-box','box','Bangle Box / Gift','Velvet box me bangles pair',()=>'an open '+rand(['maroon velvet','ivory satin','emerald velvet'])+' bangle box with a silk ribbon on a soft neutral surface',SOFTDAY,'the pair of bangles set neatly in the box slots, decorative faces up, tack-sharp macro focus'),
+
+    FL('Maang tikka','mt-held','hand','Ungliyon me (macro)','Tikka fingertips se latakta','a soft warm blurred background with golden bokeh',WARM,'the maang tikka held by its chain between thumb and index finger so it hangs straight down, pendant face-on, tack-sharp and sparkling'),
+    FL('Maang tikka','mt-brocade','flower','Gold Brocade + Genda','Zari brocade, marigold','gold silk brocade with fine woven motifs and a few marigold flowers',WARM,()=>'the maang tikka laid on the brocade, '+rand(PRODUCT_POSES)+', tack-sharp macro focus'),
+
+    FL('Mangalsutra','ms-gift','box','Gift Box (open)','Velvet box me mangalsutra',()=>'an open '+rand(['red velvet','ivory satin','maroon velvet'])+' jewellery box on a soft neutral surface',SOFTDAY,'the mangalsutra arranged in the box with the pendant centred on the cushion and the bead chain curving neatly, tack-sharp macro focus'),
+    MD('Mangalsutra','ms-m-touch','hand','Model — Ungli se pendant chhute','Neckline, fingertip pendant ke paas',()=>rand(MODEL_BG)+', the model in '+rand(TRAD_OUTFIT),'soft warm beauty lighting','a close crop of the neckline with one fingertip gently touching just below the mangalsutra pendant'+REAL),
+
+    FL('Maang tikka + Mangalsutra set','tm-silk','flower','Red Silk + Rose Petals','Laal silk, gulab pankhudiyan','rich red silk with scattered rose petals and a small brass diya softly blurred',WARM,'the mangalsutra in a soft V with the maang tikka laid vertically above it, both centred and tack-sharp'),
+    FL('Maang tikka + Mangalsutra set','tm-box','box','Bridal Gift Box','Khula box, dono pieces andar',()=>'an open '+rand(['maroon velvet','red velvet','ivory satin'])+' bridal jewellery box',SOFTDAY,'the mangalsutra on the lower cushion and the maang tikka on the upper cushion, neatly presented, tack-sharp macro focus'),
+    FL('Maang tikka + Mangalsutra set','tm-brocade','camera','Gold Brocade Flat-lay','Zari brocade par dono','gold silk brocade with fine woven motifs',WARM,'both pieces arranged symmetrically on the brocade — tikka above, mangalsutra below — tack-sharp macro focus'),
+    MD('Maang tikka + Mangalsutra set','tm-m-veil','user','Model — Dupatta three-quarter','Sir par dupatta, dono dikhe',()=>rand(MODEL_BG)+', the model in '+rand(TRAD_OUTFIT)+' with the dupatta draped over her head',WARM,'a graceful three-quarter bridal portrait, the maang tikka on the forehead and the mangalsutra on the neck both clearly visible'+REAL),
+
+    FL('Rajputi set','rj-velvet','camera','Velvet Flat-lay (royal)','Dark velvet par poora set',()=>rand(['deep maroon velvet','royal red velvet','deep emerald velvet']),'warm royal spotlight with sparkling highlights','the complete Rajputi set arranged symmetrically on the velvet, the aad as the hero, tack-sharp macro focus'),
+
+    FL('Nath (Nose Ring)','nt-box','box','Chhota Velvet Box','Nath box me',()=>'a small open '+rand(['red velvet','maroon velvet','ivory satin'])+' jewellery box',SOFTDAY,'the nath placed in the box with its chain curved neatly around it, tack-sharp macro focus'),
+    MD('Nath (Nose Ring)','nt-m-threeq','user','Model — Three-quarter + dupatta','Dupatta sir par, soft',()=>rand(MODEL_BG)+', the model in '+rand(TRAD_OUTFIT)+' with the dupatta over her head',WARM,'a three-quarter bridal close-up from the forehead to the chin, the nath worn on the nostril clearly visible'+REAL),
+
+    FL('Choker AD Set','ch-gift','box','Gift Box (open)','Velvet box me choker set',()=>'an open '+rand(['black velvet','navy velvet','maroon velvet'])+' jewellery box',SOFTDAY,'the choker on the upper cushion and the two earrings below, sparkling, tack-sharp macro focus'),
+    MD('Choker AD Set','ch-m-side','user','Model — Side profile','Choker + earring side se',()=>rand(MODEL_BG)+', hair in a sleek bun','soft flattering beauty lighting','a soft side profile showing the choker around the neck and the earring on the visible ear'+REAL),
+
+    FL('Studs','st-silk','flower','Pastel Silk Drape','Light silk fold par studs',()=>'softly draped '+rand(LIGHT_FOLD)+' silk with gentle folds',SOFTDAY,'the pair of studs resting on the silk side by side, front-on, tack-sharp macro focus'),
+    FL('Studs','st-box','box','Mini Gift Box','Chhote box me studs',()=>'a small open '+rand(['blush velvet','ivory satin','navy velvet'])+' earring box',SOFTDAY,'the pair of studs set in the box slot side by side, front-on, tack-sharp macro focus'),
+
+    FL('AD Hathphool','hp-silk','flower','Pastel Silk Flat','Light silk par hathphool',()=>'softly draped '+rand(LIGHT_FOLD)+' silk',SOFTDAY,'the hathphool spread flat in its hand shape on the silk, tack-sharp macro focus'),
+    FL('AD Hathphool','hp-box','box','Gift Box (open)','Velvet box me',()=>'an open '+rand(['maroon velvet','black velvet','ivory satin'])+' jewellery box',SOFTDAY,'the hathphool arranged neatly inside the box, tack-sharp macro focus'),
+
+    FL('AD Nose Pin','np-velvet','camera','Velvet Macro','Dark velvet par sparkle',()=>rand(['deep black velvet','deep maroon velvet','royal navy velvet']),'crisp directional light making the stones flash','an extreme macro of the nose pin on the velvet, face-on, tack-sharp'),
+    FL('AD Nose Pin','np-box','box','Mini Gift Box','Chhote box me nose pin',()=>'a tiny open '+rand(['blush velvet','ivory satin'])+' ring box',SOFTDAY,'the nose pin set in the box slot, face-on, tack-sharp macro focus'),
+
+    FL('Chain','cn-hang','rotate','Hanging + Reflection','Chain upar se latakti, reflection',WHITE_BG,BRIGHT,'the chain hanging from the top of the frame in a clean inverted V with a soft mirror reflection below, tack-sharp macro focus'),
+    MD('Chain','cn-m-side','user','Model — Side neckline','Side angle, chain gale me',()=>rand(MODEL_BG)+', hair swept to one side',SOFTDAY,'a soft three-quarter crop of the neck and collarbone, the chain following the curve of the neck'+REAL),
+
+    FL('Rakhadi','rk-brocade','flower','Gold Brocade + Genda','Zari brocade, marigold','gold silk brocade with a few marigold flowers',WARM,'the rakhadi resting on the brocade, dome face-on, tack-sharp macro focus'),
+    FL('Rakhadi','rk-box','box','Gift Box (open)','Velvet box me rakhadi',()=>'an open '+rand(['red velvet','maroon velvet'])+' jewellery box',WARM,'the rakhadi placed in the box, dome face-on, tack-sharp macro focus')
+  );
+
+  /* ---- Plain light studio background (colour picked from the list) ---- */
+  [...new Set(EXTRA_LOOKS.map(x=>x.cat))].forEach(cat=>{
+    const pf=EXTRA_LOOKS.find(x=>x.cat===cat).id.split('-')[0];
+    EXTRA_LOOKS.push(FL(cat,pf+'-plain','palette','Plain Light Studio \u2014 Colour chuniye','Solid light colour bg, list se colour select karein',
+      ()=>'a clean smooth PLAIN solid '+blushColor+' seamless studio background with one even matte tone \u2014 no props, no fabric folds, no flowers, no patterns, no gradient',
+      'soft even professional studio lighting with delicate bright highlights igniting the sparkle in every stone and a very soft natural shadow beneath',
+      'a clean front-facing catalogue product shot with the jewellery presented FRONT and CENTRE as the clear hero \u2014 if it is a pair or a set, all pieces arranged neatly and symmetrically side by side at their true relative size \u2014 tack-sharp macro detail, generous calm plain '+'background negative space all around, a minimal premium e-commerce composition, true-to-life scale'));
+  });
+  LOOKS.push(...EXTRA_LOOKS);
+
   /* Category → body zone, and which model looks suit which zone */
   const CAT_ZONE={
     'Ring':'hand','Bracelet':'hand','Bangle':'hand','Kada':'hand','Baajuband (armlet)':'hand',
@@ -1353,7 +1536,8 @@
     'the NECKLACE arranged in a gentle symmetrical arc across the top, the two small EARRINGS placed close together just beneath the centre pendant in a neat vertical/side-by-side pair, everything centred and mirrored',
     'the NECKLACE opened into a wide symmetrical U, the two small EARRINGS positioned symmetrically at the lower-left and lower-right corners of the frame framing the hanging centre pendant, balanced and mirrored'
   ];
-  function lookVisible(l,cat){ if(!ACTIVE_CATS.includes(cat)) return false; if(cat==='Necklace set') return NSET_LOOKS.includes(l.id); if(CAT_ZONE[cat]==='neck') return NECK_LOOKS.includes(l.id); const z=LOOK_ZONES[l.id]; if(!z) return true; return z.includes(CAT_ZONE[cat]); }
+  const EXTRA_CATS=new Set(EXTRA_LOOKS.map(x=>x.cat));
+  function lookVisible(l,cat){ if(l.cat) return l.cat===cat; if(EXTRA_CATS.has(cat)) return false; if(!ACTIVE_CATS.includes(cat)) return false; if(cat==='Necklace set') return NSET_LOOKS.includes(l.id); if(CAT_ZONE[cat]==='neck') return NECK_LOOKS.includes(l.id); const z=LOOK_ZONES[l.id]; if(!z) return true; return z.includes(CAT_ZONE[cat]); }
 
   const looksEl=document.getElementById('looks');
   let currentLook=null, currentCfg=null, currentCat='Ring';
@@ -1460,10 +1644,23 @@
     {t:'Light Mint',   c:'#d8ecdd', d:'pale mint green'},
     {t:'Light Cream',  c:'#f4ece0', d:'soft ivory cream'},
     {t:'Light Grey',   c:'#e7e7ec', d:'pale dove grey'},
-    {t:'Light Yellow', c:'#f6ecc9', d:'pale butter yellow'}
+    {t:'Light Yellow', c:'#f6ecc9', d:'pale butter yellow'},
+    {t:'Pure White',   c:'#ffffff', d:'pure clean white'},
+    {t:'Off-White',    c:'#faf7f2', d:'soft warm off-white'},
+    {t:'Light Beige',  c:'#efe4d6', d:'soft warm beige'},
+    {t:'Champagne',    c:'#f1e3cc', d:'pale champagne gold'},
+    {t:'Dusty Rose',   c:'#ecd3d3', d:'soft dusty rose'},
+    {t:'Light Coral',  c:'#f8d9d0', d:'pale soft coral'},
+    {t:'Light Mauve',  c:'#e8d6e0', d:'pale mauve'},
+    {t:'Light Sage',   c:'#dfe6d6', d:'pale sage green'},
+    {t:'Light Aqua',   c:'#d5ecea', d:'pale misty aqua'},
+    {t:'Light Sky',    c:'#dcebf7', d:'pale sky blue'},
+    {t:'Light Taupe',  c:'#e6ddd6', d:'pale warm taupe'},
+    {t:'Pearl Grey',   c:'#ececea', d:'soft pearl grey'}
   ];
   let blushColor=BLUSH_COLORS[0].d; // default = light pink
   const COLOR_LOOKS=['n-blush-tulle','n-plain-light']; // looks that show the colour selector
+  const isColorLook=l=>!!l && (COLOR_LOOKS.includes(l.id) || /-plain$/.test(l.id));
   const blushWrap=document.getElementById('blush-wrap');
   const blushEl=document.getElementById('c-blush');
   BLUSH_COLORS.forEach((o,i)=>{
@@ -1476,13 +1673,14 @@
       blushColor=o.d;
       [...blushEl.children].forEach(c=>c.setAttribute('aria-pressed','false'));
       b.setAttribute('aria-pressed','true');
-      if(currentLook && COLOR_LOOKS.includes(currentLook.id)) currentCfg=currentLook.make();
+      if(isColorLook(currentLook)) currentCfg=currentLook.make();
       buildPrompt();
     });
     blushEl.appendChild(b);
   });
   function updateBlushSelector(){
-    if(blushWrap) blushWrap.style.display = (currentLook && COLOR_LOOKS.includes(currentLook.id)) ? 'block' : 'none';
+    const on=isColorLook(currentLook);
+    if(blushWrap){ const was=blushWrap.style.display==='block'; blushWrap.style.display = on ? 'block' : 'none'; if(on && !was) setTimeout(()=>blushWrap.scrollIntoView({behavior:'smooth',block:'center'}),60); }
   }
   updateBlushSelector();
 
