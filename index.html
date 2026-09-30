@@ -2290,6 +2290,7 @@
     function friendlyError(code,msg){
       const m=(msg||'').toLowerCase();
       if(code===400 && /api key|api_key/.test(m)) return 'API key sahi nahi hai. AI Studio se key dobara copy karke paste karein.';
+      if(code===401 && /token_type|access_token|unsupported/.test(m)) return 'Google ne is nayi “AQ.” key ko abhi is tareeke se accept nahi kiya (401). AI Studio me key dobara banakar try karein; na chale to batayein.';
       if(code===401||code===403) return 'Key ko is model ki permission nahi hai (ya key band ho gayi). Nayi key banakar try karein.';
       if(code===429 && /limit: ?0|free_tier/.test(m)) return 'Ye model free tier me available nahi hai. Model dropdown se “Nano Banana — free tier” chuniye.';
       if(code===429) return 'Free limit abhi khatam ho gayi (per-minute ya aaj ki). Thodi der baad ya kal try karein — tab tak prompt copy karke Gemini app use karein.';
@@ -2300,7 +2301,7 @@
 
     async function generate(){
       if(busy) return;
-      const key=keyIn.value.trim();
+      const key=keyIn.value.replace(/[\s"'“”‘’]/g,'');
       if(!key){ setStatus('Pehle apni API key paste karein (step 1).'); keyIn.focus(); return; }
       if(!prod){ setStatus('Pehle jewellery ki photo daaliye (step 2).'); return; }
       if(!currentLook){ setStatus('Upar Step 2 me koi style chuniye.'); return; }
@@ -2319,9 +2320,18 @@
       goBtn.innerHTML='<span class="spin"></span>Ban rahi hai…';
       emptyEl.style.display='none'; outImg.style.display='none'; loadEl.style.display='flex'; setStatus('');
       try{
-        const res=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+encodeURIComponent(m)+':generateContent',{
-          method:'POST', headers:{'Content-Type':'application/json','x-goog-api-key':key}, body:JSON.stringify(body)
-        });
+        const base='https://generativelanguage.googleapis.com/v1beta/models/'+encodeURIComponent(m)+':generateContent';
+        const payload=JSON.stringify(body);
+        let res;
+        try{
+          // Try 1: standard way (key in header)
+          res=await fetch(base,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':key},body:payload});
+        }catch(e1){
+          // Try 2: "simple" browser request (key in URL, no preflight) — works where the browser blocks the first style
+          try{
+            res=await fetch(base+'?key='+encodeURIComponent(key),{method:'POST',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:payload});
+          }catch(e2){ console.error('Gemini request blocked:',e1,e2); throw {net:true}; }
+        }
         const json=await res.json().catch(()=>({}));
         if(!res.ok){ throw {code:res.status,msg:(json.error&&json.error.message)||res.statusText}; }
         const cand=(json.candidates||[])[0];
@@ -2341,7 +2351,8 @@
         loadEl.style.display='none';
         if(!lastUrl) emptyEl.style.display='block'; else outImg.style.display='block';
         if(err && err.code!==undefined) setStatus(err.code?friendlyError(err.code,err.msg):err.msg);
-        else setStatus('Internet ya network ki dikkat — connection check karke dobara try karein.');
+        else if(!navigator.onLine) setStatus('Internet band lag raha hai — connection check karke dobara try karein.');
+        else setStatus('Google tak request nahi pahunchi (browser ne block ki). Aksar iski wajah: (1) key galat copy hui, (2) AI Studio me key par website/IP restriction laga hai, ya (3) koi ad-blocker / privacy extension. Ad-blocker band karke ya Incognito window me try karein. Phir bhi na chale to F12 dabakar “Console” tab ka screenshot bhejein.');
       }finally{
         busy=false; goBtn.disabled=false; goBtn.innerHTML=ico_('sparkles')+'Image banao'; againBtn.disabled=!lastUrl;
       }
