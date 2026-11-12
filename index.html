@@ -873,10 +873,12 @@ const CONFIG = {
   minBooking: 999,                                 // Minimum booking (₹), set 0 for none
   weights:    {10:45, 15:30, 20:12, 25:10, 30:3},  // Chance of each discount (total 100)
   referralBonus: 150,                             // ₹ off for the inviter, per friend who books
-  sheetUrl:   ""                                   // Google Apps Script web app URL. Leave empty to test without saving.
+  sheetUrl:   "https://script.google.com/macros/s/AKfycbwV9qpz1-aXKRjD8tZfZFVoiwtxL7j9xaT3Tp2eZpKwMYyIctkVAUwlhP_BrLDYYolo/exec"                                   // Google Apps Script web app URL. Leave empty to test without saving.
 };
 
 const $ = id => document.getElementById(id);
+/* The Claude preview cannot reach Google, so it runs in local test mode; your real site uses the sheet. */
+try{ if(window.self !== window.top) CONFIG.sheetUrl = ""; }catch(e){ CONFIG.sheetUrl = ""; }
 document.addEventListener("DOMContentLoaded", () => {});
 /* Block pinch-zoom (iOS Safari ignores user-scalable=no) */
 ["gesturestart","gesturechange","gestureend"].forEach(ev => document.addEventListener(ev, e => e.preventDefault(), {passive:false}));
