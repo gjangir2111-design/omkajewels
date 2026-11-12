@@ -820,6 +820,10 @@ html .refer .rf-wa{margin-top:10px;width:100%}
         <input id="name" name="name" type="text" placeholder="e.g. Priya Sharma" autocomplete="name" maxlength="40">
       </div>
       <div class="field">
+        <label for="place">Village / city</label>
+        <input id="place" name="address-level2" type="text" placeholder="e.g. Sardarshahar" autocomplete="address-level2" maxlength="40">
+      </div>
+      <div class="field">
         <label for="mobile">WhatsApp number</label>
         <div class="phone wa-field"><span><i class="wa-ic" aria-hidden="true"></i>+91</span><input id="mobile" name="tel" type="tel" inputmode="numeric" placeholder="10 digit WhatsApp number" autocomplete="tel-national"></div>
       </div>
@@ -858,8 +862,8 @@ html .refer .rf-wa{margin-top:10px;width:100%}
 const CONFIG = {
   shopName:   "Surangi Collection",                      // Your store name
   codePrefix: "SC",                                // Coupon code prefix (2–4 letters)
-  whatsapp:   "919876543210",                      // WhatsApp number: 91 + 10 digits, without +
-  phoneText:  "+91 98765 43210",
+  whatsapp:   "917357869607",                      // WhatsApp number: 91 + 10 digits, without +
+  phoneText:  "+91 7357869607",
   instagram:  "surangicollection",                // Instagram username, without @
   city:       "Sardarshahar",                     // Town name shown at the top
   region:     "Rajasthan",
@@ -1030,6 +1034,7 @@ function validate(){
   $("mobile").value = normalizeMobile($("mobile").value);
   const name = $("name").value.trim(), mob = $("mobile").value;
   if(name.length < 2) return "Please enter your name.";
+  if($("place").value.trim().length < 2) return "Please enter your village or city.";
   if(!/^[6-9]\d{9}$/.test(mob)) return "Please enter a valid 10-digit WhatsApp number.";
   if((store.get(KEY+"_mobiles")||[]).includes(mob)) return "This WhatsApp number has already been used for a spin.";
   if(!$("agree").checked) return "Please accept the terms & conditions.";
@@ -1045,7 +1050,7 @@ function normalizeMobile(v){
 ["input","change","blur"].forEach(ev => $("mobile").addEventListener(ev, e => {
   const n = normalizeMobile(e.target.value); if(n !== e.target.value) e.target.value = n;
 }));
-["name","mobile","agree"].forEach(id => $(id).addEventListener("input", () => { $("err").textContent = ""; }));
+["name","place","mobile","agree"].forEach(id => $(id).addEventListener("input", () => { $("err").textContent = ""; }));
 $("form").addEventListener("submit", e => { e.preventDefault(); });
 $("spinBtn").addEventListener("click", startSpin);
 ["name","mobile"].forEach(id => $(id).addEventListener("keydown", e => {
@@ -1072,7 +1077,7 @@ async function getCoupon(name, mobile){
   const ctl = new AbortController(); const t = setTimeout(()=>ctl.abort(), 20000);
   try{
     const res = await fetch(CONFIG.sheetUrl, { method:"POST", headers:{ "Content-Type":"text/plain;charset=utf-8" },
-      body: JSON.stringify({ name, mobile, referredBy: store.get(REF_KEY) || "" }), signal: ctl.signal });
+      body: JSON.stringify({ name, mobile, place: $("place").value.trim(), referredBy: store.get(REF_KEY) || "" }), signal: ctl.signal });
     return await res.json();
   } finally { clearTimeout(t); }
 }
@@ -1142,7 +1147,7 @@ async function startSpin(){
     const val = pickValue();
     const now = new Date(), open = new Date(CONFIG.openingDate), from = now > open ? now : open;
     const valid = new Date(from.getTime()+CONFIG.validDays*864e5), end = new Date(CONFIG.offerEnds);
-    coupon = { name, mobile, value:val, code:makeCode(val), validTill:(valid<end?valid:end).toISOString(), referredBy: store.get(REF_KEY) || "" };
+    coupon = { name, mobile, value:val, code:makeCode(val), validTill:(valid<end?valid:end).toISOString(), referredBy: store.get(REF_KEY) || "", place: $("place").value.trim() };
   }
   $("spinBtn").textContent = "Spinning…";
   document.body.classList.add("is-spinning");
@@ -1388,7 +1393,7 @@ function resetThisDevice(){
   document.body.classList.remove("claimed");
   $("heroTitle").innerHTML = heroDefault.title; $("heroLead").innerHTML = heroDefault.lead;
   $("already").style.display = "none"; $("agree").checked = false; $("tcList").hidden = true; $("spinBtn").disabled = true;
-  $("name").value = ""; $("mobile").value = ""; $("err").textContent = "";
+  $("name").value = ""; $("mobile").value = ""; $("place").value = ""; $("err").textContent = "";
   $("spinBtn").textContent = "Spin now"; $("hubBtn").disabled = false;
   $("modal").classList.remove("show"); spinning = false;
   try{ if(location.hash === "#reset") history.replaceState(null, "", location.pathname + location.search); }catch(e){}
