@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Surangi Collection – Grand Opening Spin & Win</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -224,7 +224,7 @@ body.is-spinning .spark{animation-duration:.6s}
 @media(max-width:480px){html .tbrand span{font-size:14px;white-space:nowrap}}
 /* Mobile fit + scroll lock */
 @media(max-width:880px){.foot{padding-bottom:86px}}
-body{max-width:100%;overflow-x:clip}
+html,body{max-width:100%;overflow-x:clip}
 @supports not (overflow:clip){body{overflow-x:hidden}}
 .copy > *,.hero > *{min-width:0}
 .modal{overscroll-behavior:contain}
@@ -570,6 +570,74 @@ html .wa-field input{border-color:#9FE3B8;background:#F3FCF6}
 html .wa-field input:focus{border-color:#25D366;box-shadow:0 0 0 3px rgba(37,211,102,.18)}
 html .wa-field input::placeholder{color:#7BA88B}
 html .steps-wrap{border-top:none;border-bottom:none}
+html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+/* Instagram */
+.ig-btn{display:inline-flex;align-items:center;gap:9px;margin-top:20px;padding:11px 18px;border-radius:999px;text-decoration:none;color:#fff;font-weight:600;font-size:15px;
+  background:linear-gradient(45deg,#F9A13A 0%,#E1306C 45%,#8A3AB9 100%);box-shadow:0 10px 22px -10px rgba(193,53,132,.8)}
+.ig-btn b{font-weight:700}
+.ig-btn svg,.ig-float svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.ig-float{position:fixed;right:22px;bottom:84px;z-index:40;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(45deg,#F9A13A 0%,#E1306C 45%,#8A3AB9 100%);box-shadow:0 10px 22px -8px rgba(193,53,132,.7);transition:transform .15s}
+.ig-float:hover{transform:scale(1.07)}
+.ig-float svg{width:22px;height:22px}
+body.splashing .ig-float{display:none}
+@media(max-width:600px){html .ig-float{right:17px;bottom:72px;width:44px;height:44px}html .ig-btn{font-size:14px;padding:10px 16px}}
+@media(max-width:880px){html .visit .foot{padding-bottom:84px}}
+/* Halos sit behind all text: no per-item stacking in the header */
+html .head-wrap > *:not(.ladis){z-index:auto}
+html .ladis{z-index:-1}
+html .ig-ic{width:28px;height:28px;border-radius:50%;box-shadow:0 0 0 2px #fff;flex:none}
+@media(max-width:600px){html .ig-ic{width:24px;height:24px}}
+html .ig-btn{padding-left:9px}
+/* Footer decoration */
+html .visit .foot{padding-bottom:10px}
+.thanks{display:flex;align-items:center;justify-content:center;gap:12px;margin:22px auto 0;padding:0 16px;
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:20px;color:var(--rani);text-align:center}
+.th-line{flex:0 0 44px;height:1px;background:linear-gradient(90deg,transparent,#C9A24E)}
+.th-line:last-child{transform:scaleX(-1)}
+.diyas{display:flex;justify-content:center;align-items:flex-end;gap:clamp(6px,2.4vw,22px);padding:14px 16px 10px}
+.diya{display:block;width:clamp(30px,8vw,46px)}
+.diya svg{display:block;width:100%;height:auto;overflow:visible}
+.diya:nth-child(odd){transform:translateY(-6px)}
+.diya .flame{transform-origin:24px 22px;animation:flick 1.6s ease-in-out infinite}
+.diya .glow{animation:glow 1.6s ease-in-out infinite}
+.diya.d1 .flame,.diya.d1 .glow{animation-delay:-.4s}.diya.d2 .flame,.diya.d2 .glow{animation-delay:-.9s}
+.diya.d3 .flame,.diya.d3 .glow{animation-delay:-.2s}.diya.d4 .flame,.diya.d4 .glow{animation-delay:-1.2s}
+.diya.d5 .flame,.diya.d5 .glow{animation-delay:-.7s}.diya.d6 .flame,.diya.d6 .glow{animation-delay:-1.4s}
+@keyframes flick{0%,100%{transform:scale(1,1) rotate(-2deg)}30%{transform:scale(.92,1.08) rotate(2deg)}60%{transform:scale(1.05,.95) rotate(-1deg)}}
+@keyframes glow{0%,100%{opacity:.14}50%{opacity:.3}}
+.foot-border{height:30px;max-width:100%;margin-bottom:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='30' viewBox='0 0 60 30'%3E%3Crect y='18' width='60' height='12' fill='%239C7026'/%3E%3Ccircle cx='15' cy='18' r='11' fill='%23F0A02C'/%3E%3Ccircle cx='15' cy='18' r='4.5' fill='%23C9561C' opacity='.5'/%3E%3Ccircle cx='45' cy='18' r='11' fill='%23E9772A'/%3E%3Ccircle cx='45' cy='18' r='4.5' fill='%23C9561C' opacity='.5'/%3E%3C/svg%3E") center bottom/60px 30px repeat-x}
+@media(max-width:880px){html .visit .foot{padding-bottom:6px}.foot-border{margin-top:64px}}
+@media(max-width:600px){.thanks{font-size:17px}.th-line{flex-basis:28px}}
+@media(prefers-reduced-motion:reduce){.diya .flame,.diya .glow{animation:none}}
+.diyas{display:block;padding:16px 12px 4px}
+.mala2{display:block;width:min(560px,100%);height:auto;margin:0 auto}
+html .visit .foot{padding-top:14px}
+@media(max-width:880px){html .visit .foot{padding-bottom:84px}}
+@media(max-width:880px){html .visit .foot{padding-bottom:22px;padding-right:70px;padding-left:70px}}
+html .thanks{margin-top:16px}
+html .visit-in{padding-bottom:6px}
+/* Referral */
+.refer{margin-top:14px;padding:14px;border-radius:12px;background:linear-gradient(135deg,#FFF8EC,#FCEFD6);border:1.5px dashed #D9B45E;text-align:left}
+.rf-top{display:flex;gap:11px;align-items:flex-start}
+.rf-ic{flex:none;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,#C9A24E,#8A6322)}
+.rf-ic svg,.ref-banner svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.refer h4{font-size:16px;font-weight:700;color:#3A2A14;line-height:1.25}
+.refer h4 b{color:#B3123F}
+.refer p{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.45}
+.refer p b{color:#3A2A14}
+.rf-link{display:flex;align-items:center;gap:8px;margin-top:12px;padding:6px 6px 6px 12px;background:#fff;border:1px solid var(--line);border-radius:8px}
+.rf-url{flex:1;min-width:0;font-size:12.5px;color:#3A2A14;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rf-copy{display:inline-flex;align-items:center;gap:5px;border:none;border-radius:6px;padding:7px 11px;background:var(--blush);color:#74501A;font:inherit;font-weight:700;font-size:13px;cursor:pointer}
+.rf-copy svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+html .refer .rf-wa{margin-top:10px;width:100%}
+.btn-wa .wa-ic{width:20px;height:20px}
+.rf-count{font-size:12.5px;font-weight:600;color:#2E7D4F;margin-top:9px;text-align:center}
+.ref-banner{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding:9px 14px;border-radius:10px;background:linear-gradient(135deg,#C9A24E,#8A6322);color:#fff;font-weight:600;font-size:14px;text-align:left}
+.ref-banner[hidden]{display:none}
+.ref-banner svg{flex:none}
+@media(max-width:880px){.ref-banner{order:0;justify-self:center}}
+.tmeta b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 </style>
 </head>
 <body class="splashing">
@@ -602,6 +670,7 @@ html .steps-wrap{border-top:none;border-bottom:none}
 
 <main class="hero">
   <div class="copy">
+    <div class="ref-banner" id="refBanner" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="9" width="17" height="11.5" rx="1.5"/><path d="M2.5 9h19v-2.5a1 1 0 0 0-1-1h-17a1 1 0 0 0-1 1zM12 5.5v15"/><path d="M12 5.5C10.5 2.5 6.5 2.5 7.5 5c.5 1 2.5.5 4.5.5zM12 5.5c1.5-3 5.5-3 4.5-.5-.5 1-2.5.5-4.5.5z"/></svg><span>Your friend invited you! Spin now to win your opening discount.</span></div>
     <div class="ribbon"><span class="rb-star">✦</span><span>Grand Opening in <span class="js-city">Sardarshahar</span> · <span class="js-odate-long">16 November</span></span><span class="rb-star">✦</span></div>
     <h1 id="heroTitle">Opening soon! Spin now &amp; win up to 30% off</h1>
     <p class="lead" id="heroLead">We open on <span class="js-odate-full">16 November 2026</span>. Spin today to lock in your opening discount, and use it from opening day on designer dresses for rent.</p>
@@ -615,10 +684,16 @@ html .steps-wrap{border-top:none;border-bottom:none}
         <div class="tbody">
           <div class="tbrand"><span class="js-brand">Surangi Collection</span><small>Grand opening coupon</small></div>
           <div class="codebox"><small>Code</small><span class="code" id="savedCode">SC20-XXXX-XXX</span><button class="cp-btn" type="button" data-copy="savedCode" aria-label="Copy coupon code"><svg class="cp-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></div>
-          <div class="valid">Valid until <b id="savedValid">—</b></div>
+          <div class="tmeta"><div>Name<b id="savedName">—</b></div><div>Valid until<b id="savedValid">—</b></div></div>
         </div>
       </div>
       <div class="tk-row"><span class="tk-hint">Tap the copy icon to copy the code</span><button class="save-img" type="button" id="saveImgSaved"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>Save image</button></div>
+      <div class="refer" id="referS">
+      <div class="rf-top"><span class="rf-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="9" width="17" height="11.5" rx="1.5"/><path d="M2.5 9h19v-2.5a1 1 0 0 0-1-1h-17a1 1 0 0 0-1 1zM12 5.5v15"/><path d="M12 5.5C10.5 2.5 6.5 2.5 7.5 5c.5 1 2.5.5 4.5.5zM12 5.5c1.5-3 5.5-3 4.5-.5-.5 1-2.5.5-4.5.5z"/></svg></span><div><h4>Invite friends, get <b class="js-rbonus">₹150</b> off each</h4><p>Whoever uses your invite link and books with us at our opening, you get <b class="js-rbonus">₹150</b> off for every booking they make.</p></div></div>
+      <div class="rf-link"><span class="rf-url" id="rfUrlS">—</span><button class="rf-copy" type="button" data-rf="S" aria-label="Copy invite link"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></svg><span>Copy</span></button></div>
+      <a class="btn btn-wa rf-wa" id="rfWaS" href="#" target="_blank" rel="noopener"><span class="wa-ic" aria-hidden="true"></span>Invite friends on WhatsApp</a>
+      <p class="rf-count" id="rfCountS" hidden></p>
+    </div>
       <div class="saved-actions">
         <a class="btn btn-main" id="savedDir" href="#" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Get directions</a>
         <button class="btn btn-line" id="showMine" type="button">View details</button>
@@ -700,16 +775,11 @@ html .steps-wrap{border-top:none;border-bottom:none}
         <li><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="hours">Open daily, 10 AM to 9 PM</span></li>
         <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg><span id="phoneTxt">+91 98765 43210</span></li>
       </ul>
-    </div>
-    <div class="mapbox" id="mapBox">
-      <div class="map-ph" id="mapPh" aria-hidden="true">
-        <div class="map-pin"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div>
-        <span class="map-ph-tx">Map preview loads on your website</span>
-      </div>
-      <a class="map-open" id="mapLink" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>Open in Google Maps</span></a>
+      <a class="ig-btn" id="igLink" href="#" target="_blank" rel="noopener"><img class="ig-ic" src="data:image/png;base64,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" alt="" width="28" height="28"><span>Follow us on Instagram <b id="igHandle">@surangicollection</b></span></a>
     </div>
   </div>
-  <p class="foot" id="foot"></p>
+  <div class="thanks"><span class="th-line"></span><span>Thank you for celebrating with us</span><span class="th-line"></span></div>
+    <p class="foot" id="foot"></p>
 </section>
 
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="hello">
@@ -729,6 +799,12 @@ html .steps-wrap{border-top:none;border-bottom:none}
       </div>
     </div>
     <div class="tk-row"><span class="tk-hint">Tap the copy icon to copy the code</span><button class="save-img" type="button" id="saveImgModal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>Save image</button></div>
+    <div class="refer" id="referM">
+      <div class="rf-top"><span class="rf-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="9" width="17" height="11.5" rx="1.5"/><path d="M2.5 9h19v-2.5a1 1 0 0 0-1-1h-17a1 1 0 0 0-1 1zM12 5.5v15"/><path d="M12 5.5C10.5 2.5 6.5 2.5 7.5 5c.5 1 2.5.5 4.5.5zM12 5.5c1.5-3 5.5-3 4.5-.5-.5 1-2.5.5-4.5.5z"/></svg></span><div><h4>Invite friends, get <b class="js-rbonus">₹150</b> off each</h4><p>Whoever uses your invite link and books with us at our opening, you get <b class="js-rbonus">₹150</b> off for every booking they make.</p></div></div>
+      <div class="rf-link"><span class="rf-url" id="rfUrlM">—</span><button class="rf-copy" type="button" data-rf="M" aria-label="Copy invite link"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></svg><span>Copy</span></button></div>
+      <a class="btn btn-wa rf-wa" id="rfWaM" href="#" target="_blank" rel="noopener"><span class="wa-ic" aria-hidden="true"></span>Invite friends on WhatsApp</a>
+      <p class="rf-count" id="rfCountM" hidden></p>
+    </div>
     <a class="btn btn-main" id="mapBtn" href="#" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Get directions to the store</a>
     <ul class="terms" id="terms"></ul>
   </div>
@@ -758,6 +834,7 @@ html .steps-wrap{border-top:none;border-bottom:none}
           <li>The discount does not apply to the security deposit.</li>
           <li>The coupon can be used from our opening day, <span class="js-odate-full">16 November 2026</span>.</li>
           <li>Your coupon is linked to the mobile number you spin with.</li>
+          <li>Invite reward: whoever uses your invite link and books at our opening, you get ₹<span class="js-rbonus-n">150</span> off for every booking they make.</li>
       </ul>
       <div class="err" id="err" role="alert"></div>
       <button class="btn btn-main" id="spinBtn" type="button" disabled>Spin now</button>
@@ -783,6 +860,7 @@ const CONFIG = {
   codePrefix: "SC",                                // Coupon code prefix (2–4 letters)
   whatsapp:   "919876543210",                      // WhatsApp number: 91 + 10 digits, without +
   phoneText:  "+91 98765 43210",
+  instagram:  "surangicollection",                // Instagram username, without @
   city:       "Sardarshahar",                     // Town name shown at the top
   region:     "Rajasthan",
   address:    "Shop No. 12, Main Market, Sardarshahar",
@@ -793,11 +871,18 @@ const CONFIG = {
   offerEnds:  "2026-12-15T21:00:00+05:30",         // When the opening offer ends
   validDays:  10,                                  // Days a coupon stays valid, counted from opening day
   minBooking: 999,                                 // Minimum booking (₹), set 0 for none
-  weights:    {10:34, 15:30, 20:20, 25:11, 30:5},  // Chance of each discount (total 100)
+  weights:    {10:45, 15:30, 20:12, 25:10, 30:3},  // Chance of each discount (total 100)
+  referralBonus: 150,                             // ₹ off for the inviter, per friend who books
   sheetUrl:   ""                                   // Google Apps Script web app URL. Leave empty to test without saving.
 };
 
 const $ = id => document.getElementById(id);
+document.addEventListener("DOMContentLoaded", () => {});
+/* Block pinch-zoom (iOS Safari ignores user-scalable=no) */
+["gesturestart","gesturechange","gestureend"].forEach(ev => document.addEventListener(ev, e => e.preventDefault(), {passive:false}));
+document.addEventListener("touchmove", e => { if(e.touches && e.touches.length > 1) e.preventDefault(); }, {passive:false});
+let lastTouchEnd = 0;
+document.addEventListener("touchend", e => { const now = Date.now(); if(now - lastTouchEnd < 300 && !e.target.closest("input,textarea,button,a,label")) e.preventDefault(); lastTouchEnd = now; }, {passive:false});
 (function(){
   const sp = document.getElementById("splash"); if(!sp) return;
   const quick = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -810,6 +895,12 @@ const $ = id => document.getElementById(id);
   sp.addEventListener("click", hide);
 })();
 document.querySelectorAll(".js-brand").forEach(e => e.textContent = CONFIG.shopName);
+(function(){
+  const u = String(CONFIG.instagram||"").replace(/^@/,"").trim();
+  if(!u){ ["igLink"].forEach(id => { const e=$(id); if(e) e.remove(); }); return; }
+  const url = "https://www.instagram.com/" + encodeURIComponent(u) + "/";
+  $("igLink").href = url; $("igHandle").textContent = "@" + u;
+})();
 document.querySelectorAll(".js-city").forEach(e => e.textContent = CONFIG.city);
 document.querySelectorAll(".js-region").forEach(e => e.textContent = CONFIG.region);
 $("locLink").href = CONFIG.mapsUrl;
@@ -830,15 +921,8 @@ $("phoneTxt").textContent = CONFIG.phoneText;
 $("callLink").href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("Hello " + CONFIG.shopName + ", I would like to know more about your dresses on rent.")}`;
 $("addr").textContent = CONFIG.address;
 $("hours").textContent = CONFIG.hours;
-$("mapLink").href = $("mapBtn").href = CONFIG.mapsUrl;
-(function(){
-  if(window.self !== window.top || !CONFIG.mapEmbed) return;   // embedded previews block other sites' frames
-  const f = document.createElement("iframe");
-  f.src = "https://www.google.com/maps?q=" + encodeURIComponent(CONFIG.mapEmbed) + "&output=embed";
-  f.loading = "lazy"; f.referrerPolicy = "no-referrer-when-downgrade"; f.title = "Store location on Google Maps";
-  f.setAttribute("allowfullscreen","");
-  $("mapBox").insertBefore(f, $("mapLink")); $("mapPh").style.display = "none";
-})();
+$("mapBtn").href = CONFIG.mapsUrl;
+
 $("foot").textContent = `© ${new Date().getFullYear()} ${CONFIG.shopName}`;
 document.title = CONFIG.shopName + " – Grand Opening Spin & Win";
 
@@ -966,6 +1050,7 @@ $("spinBtn").addEventListener("click", startSpin);
   if(e.key === "Enter"){ e.preventDefault(); if(!$("spinBtn").disabled) startSpin(); else $("err").textContent = validate() || ""; }
 }));
 function openSpinForm(){
+  SFX.unlock();
   if(spinning || document.body.classList.contains("claimed")) return;
   $("spinModal").classList.add("show");
   setTimeout(()=>$("name").focus(), 50);
@@ -985,7 +1070,7 @@ async function getCoupon(name, mobile){
   const ctl = new AbortController(); const t = setTimeout(()=>ctl.abort(), 20000);
   try{
     const res = await fetch(CONFIG.sheetUrl, { method:"POST", headers:{ "Content-Type":"text/plain;charset=utf-8" },
-      body: JSON.stringify({ name, mobile }), signal: ctl.signal });
+      body: JSON.stringify({ name, mobile, referredBy: store.get(REF_KEY) || "" }), signal: ctl.signal });
     return await res.json();
   } finally { clearTimeout(t); }
 }
@@ -993,7 +1078,44 @@ function resetSpinBtn(){
   spinning = false; $("spinBtn").textContent = "Spin now";
   $("hubBtn").disabled = false; syncSpinBtn();
 }
+/* ---------- Sounds (Web Audio, no files) ---------- */
+const SFX = (() => {
+  let ctx = null, master = null;
+  function unlock(){
+    try{
+      if(!ctx){ const AC = window.AudioContext || window.webkitAudioContext; if(!AC) return; ctx = new AC(); master = ctx.createGain(); master.gain.value = .55; master.connect(ctx.destination); }
+      if(ctx.state === "suspended") ctx.resume();
+    }catch(e){}
+  }
+  function tone(freq, t0, dur, type, vol, slideTo){
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = type; o.frequency.setValueAtTime(freq, t0);
+    if(slideTo) o.frequency.exponentialRampToValueAtTime(slideTo, t0 + dur);
+    g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(vol, t0 + .008); g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    o.connect(g); g.connect(master); o.start(t0); o.stop(t0 + dur + .02);
+  }
+  let lastTick = 0;
+  function tick(){
+    if(!ctx || ctx.state !== "running") return;
+    const now = ctx.currentTime; if(now - lastTick < .035) return; lastTick = now;
+    tone(1900, now, .045, "square", .12, 900);
+    tone(420, now, .03, "triangle", .10);
+  }
+  function win(){
+    if(!ctx || ctx.state !== "running") return;
+    const t = ctx.currentTime + .02;
+    [523.25, 659.25, 783.99, 1046.5].forEach((f,i) => { tone(f, t + i*.11, .5, "triangle", .32); tone(f*2, t + i*.11, .25, "sine", .08); });
+    [1318.5, 1567.98, 2093].forEach((f,i) => tone(f, t + .5 + i*.07, .6, "sine", .12));
+    for(let i=0;i<10;i++) tone(2400 + Math.random()*2200, t + .55 + Math.random()*.7, .12, "sine", .05);
+  }
+  function start(){
+    if(!ctx || ctx.state !== "running") return;
+    const t = ctx.currentTime; tone(220, t, .35, "sawtooth", .06, 520);
+  }
+  return { unlock, tick, win, start };
+})();
 async function startSpin(){
+  SFX.unlock();
   if(spinning) return;
   const msg = validate(); if(msg){ $("err").textContent = msg; return; }
   spinning = true;
@@ -1018,7 +1140,7 @@ async function startSpin(){
     const val = pickValue();
     const now = new Date(), open = new Date(CONFIG.openingDate), from = now > open ? now : open;
     const valid = new Date(from.getTime()+CONFIG.validDays*864e5), end = new Date(CONFIG.offerEnds);
-    coupon = { name, mobile, value:val, code:makeCode(val), validTill:(valid<end?valid:end).toISOString() };
+    coupon = { name, mobile, value:val, code:makeCode(val), validTill:(valid<end?valid:end).toISOString(), referredBy: store.get(REF_KEY) || "" };
   }
   $("spinBtn").textContent = "Spinning…";
   document.body.classList.add("is-spinning");
@@ -1033,14 +1155,14 @@ async function startSpin(){
   rotation += (360-cur) + target + 360*7;
   cvs.style.transform = `rotate(${rotation}deg)`;
   pending = coupon;
-  startTicks();
+  SFX.start(); startTicks();
 }
 cvs.addEventListener("transitionend", () => {
   if(!pending) return;
   spinning = false; stopTicks(); document.body.classList.remove("is-spinning"); $("hubBtn").disabled = false; $("spinBtn").textContent = "Spin now"; syncSpinBtn();
   const used = store.get(KEY+"_mobiles")||[]; used.push(pending.mobile); store.set(KEY+"_mobiles", used);
   store.set(KEY+"_last", pending);
-  showResult(pending, true); pending = null; setAlready();
+  showResult(pending, true); SFX.win(); pending = null; setAlready();
 });
 
 let tickTimer=null, lastSeg=-1;
@@ -1050,7 +1172,7 @@ function startTicks(){
     const m = getComputedStyle(cvs).transform; if(m==="none") return;
     const [a,b] = m.slice(7,-1).split(",").map(Number);
     const s = Math.floor((((Math.atan2(b,a)*180/Math.PI)+360)%360 + SEG/2)/SEG);
-    if(s!==lastSeg){ lastSeg=s; p.classList.remove("tick"); void p.offsetWidth; p.classList.add("tick"); }
+    if(s!==lastSeg){ lastSeg=s; SFX.tick(); p.classList.remove("tick"); void p.offsetWidth; p.classList.add("tick"); }
   },30);
 }
 function stopTicks(){ clearInterval(tickTimer); }
@@ -1058,6 +1180,7 @@ function stopTicks(){ clearInterval(tickTimer); }
 const fmtDate = iso => new Date(iso).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"});
 function showResult(r, celebrate, note){
   lastShown = r;
+  fillReferral(r);
   $("hello").textContent = `Congratulations, ${r.name.split(" ")[0]}!`;
   $("won").textContent = note || `You have won ${r.value}% off`;
   $("offVal").textContent = r.value + "%";
@@ -1070,7 +1193,8 @@ function showResult(r, celebrate, note){
     CONFIG.minBooking ? `Minimum booking of ₹${CONFIG.minBooking}.` : null,
     "One coupon per customer. Cannot be combined with other offers.",
     "The discount does not apply to the security deposit.",
-    "Your coupon is linked to the mobile number you spun with."
+    "Your coupon is linked to the mobile number you spun with.",
+    `Invite reward: whoever uses your invite link and books at our opening, you get ₹${CONFIG.referralBonus} off for every booking they make.`
   ].filter(Boolean).map(t=>`<li>${t}</li>`).join("");
   $("modal").classList.add("show");
   $("closeModal").focus();
@@ -1185,6 +1309,52 @@ let lastShown = null;
 $("saveImgModal").onclick = e => saveCouponImage(lastShown || currentCoupon(), e.currentTarget);
 $("saveImgSaved").onclick = e => saveCouponImage(currentCoupon(), e.currentTarget);
 $("imgViewClose").onclick = () => $("imgView").classList.remove("show");
+
+/* ---------- Referral ---------- */
+const refOf = c => c && c.code ? String(c.code).split("-").slice(1).join("") : "";
+const REF_KEY = KEY + "_ref";
+(function captureRef(){
+  let r = "";
+  try{ r = new URLSearchParams(location.search).get("ref") || ""; }catch(e){}
+  const m = (location.hash||"").match(/^#ref-([A-Za-z0-9]{4,12})$/); if(!r && m) r = m[1];
+  r = r.replace(/[^A-Za-z0-9]/g,"").toUpperCase().slice(0,12);
+  if(r){
+    const mine = refOf(store.get(KEY+"_last"));
+    if(r !== mine) store.set(REF_KEY, r);
+  }
+  if(store.get(REF_KEY) && !store.get(KEY+"_last")) $("refBanner").hidden = false;
+})();
+document.querySelectorAll(".js-rbonus").forEach(e => e.textContent = "₹" + CONFIG.referralBonus);
+document.querySelectorAll(".js-rbonus-n").forEach(e => e.textContent = CONFIG.referralBonus);
+function inviteUrl(c){
+  const base = location.origin && location.origin !== "null" ? location.origin + location.pathname : location.href.split(/[?#]/)[0];
+  return base + "?ref=" + refOf(c);
+}
+async function fillReferral(c){
+  if(!c || !c.code) return;
+  const url = inviteUrl(c), first = c.name.split(" ")[0];
+  const msg = `Hi! ${CONFIG.shopName} is opening in ${CONFIG.city} on ${fmtDate(CONFIG.openingDate)} with designer dresses on rent. Spin the opening wheel and win up to 30% off: ${url}`;
+  ["S","M"].forEach(k => {
+    const u = $("rfUrl"+k); if(u) u.textContent = url.replace(/^https?:\/\//,"");
+    const w = $("rfWa"+k); if(w) w.href = "https://wa.me/?text=" + encodeURIComponent(msg);
+  });
+  if(CONFIG.sheetUrl){
+    try{
+      const res = await fetch(CONFIG.sheetUrl + "?action=refs&ref=" + encodeURIComponent(refOf(c)));
+      const d = await res.json();
+      if(d && typeof d.joined === "number"){
+        const t = d.joined === 0 ? "No friends have joined yet. Share your link to start earning."
+          : `${d.joined} friend${d.joined>1?"s":""} joined with your link` + (typeof d.booked === "number" ? ` · ${d.booked} booked (₹${d.booked*CONFIG.referralBonus} off for you)` : "");
+        ["S","M"].forEach(k => { const e = $("rfCount"+k); if(e){ e.textContent = t; e.hidden = false; } });
+      }
+    }catch(e){}
+  }
+}
+document.querySelectorAll("[data-rf]").forEach(b => b.addEventListener("click", async () => {
+  const c = store.get(KEY+"_last") || lastShown; if(!c) return;
+  const ok = await copyText(inviteUrl(c));
+  toast(ok ? "Invite link copied" : "Could not copy the link");
+}));
 function setAlready(){
   const last = store.get(KEY+"_last");
   if(last){
@@ -1193,6 +1363,7 @@ function setAlready(){
     $("savedOff").textContent = last.value + "%";
     $("savedCode").textContent = last.code;
     $("savedValid").textContent = fmtDate(last.validTill);
+    $("savedName").textContent = last.name;
     $("savedDir").href = CONFIG.mapsUrl;
     $("showMine").onclick = () => showResult(last,false);
     const first = last.name.split(" ")[0];
@@ -1204,12 +1375,14 @@ function setAlready(){
       : `Show this code, or just tell us your mobile number, when you book at the store. Valid until ${fmtDate(last.validTill)}.`;
     $("savedAddr").textContent = CONFIG.address;
     $("savedHours").textContent = CONFIG.hours;
+    $("refBanner").hidden = true;
+    fillReferral(last);
   }
 }
 /* Owner reset: open the page with #reset, or tap the © line at the bottom 5 times */
 const heroDefault = { title: $("heroTitle").innerHTML, lead: $("heroLead").innerHTML };
 function resetThisDevice(){
-  try{ localStorage.removeItem(KEY+"_last"); localStorage.removeItem(KEY+"_mobiles"); }catch(e){}
+  try{ localStorage.removeItem(KEY+"_last"); localStorage.removeItem(KEY+"_mobiles"); localStorage.removeItem(REF_KEY); }catch(e){}
   document.body.classList.remove("claimed");
   $("heroTitle").innerHTML = heroDefault.title; $("heroLead").innerHTML = heroDefault.lead;
   $("already").style.display = "none"; $("agree").checked = false; $("tcList").hidden = true; $("spinBtn").disabled = true;
