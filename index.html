@@ -196,7 +196,7 @@ body.is-spinning .tap-hand,body.is-spinning .tap-ring,body.is-spinning .wheel-hi
 body.splashing{overflow:hidden}
 @media(prefers-reduced-motion:reduce){.splash .dancer,.splash .sp-name,.splash .sp-sub{animation:none;opacity:1;transform:none;letter-spacing:.08em}.splash .sp-line{animation:none;width:180px}}
 .head-wrap{background:var(--petal);position:relative}
-.head{justify-content:center;padding:14px 22px 6px}
+.head{justify-content:center;padding:0 22px 4px}
 .toran{height:66px;margin-bottom:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='74' viewBox='0 0 240 74'%3E%3Cpath d='M0.0 8.0 L6.0 10.0 L12.0 12.1 L18.0 14.1 L24.0 16.0 L30.0 17.9 L36.0 19.8 L42.0 21.6 L48.0 23.3 L54.0 24.9 L60.0 26.4 L66.0 27.8 L72.0 29.0 L78.0 30.2 L84.0 31.2 L90.0 32.0 L96.0 32.7 L102.0 33.3 L108.0 33.7 L114.0 33.9 L120.0 34.0 L126.0 33.9 L132.0 33.7 L138.0 33.3 L144.0 32.7 L150.0 32.0 L156.0 31.2 L162.0 30.2 L168.0 29.0 L174.0 27.8 L180.0 26.4 L186.0 24.9 L192.0 23.3 L198.0 21.6 L204.0 19.8 L210.0 17.9 L216.0 16.0 L222.0 14.1 L228.0 12.1 L234.0 10.0 L240.0 8.0' fill='none' stroke='%23B88A2E' stroke-width='1.6'/%3E%3Cellipse cx='0' cy='14' rx='5' ry='12' transform='rotate%28-35 0 8%29 translate%280 6%29' fill='%236E8B3D'/%3E%3Cellipse cx='0' cy='14' rx='5' ry='12' transform='rotate%2835 0 8%29 translate%280 6%29' fill='%236E8B3D'/%3E%3Cellipse cx='240' cy='14' rx='5' ry='12' transform='rotate%28-35 240 8%29 translate%280 6%29' fill='%236E8B3D'/%3E%3Cellipse cx='240' cy='14' rx='5' ry='12' transform='rotate%2835 240 8%29 translate%280 6%29' fill='%236E8B3D'/%3E%3Ccircle cx='20.0' cy='14.7' r='7.2' fill='%23F0A02C'/%3E%3Ccircle cx='20.0' cy='14.7' r='3.4' fill='%23C9561C' opacity='.55'/%3E%3Ccircle cx='40.0' cy='21.0' r='7.2' fill='%23E9772A'/%3E%3Ccircle cx='40.0' cy='21.0' r='3.4' fill='%23C9561C' opacity='.55'/%3E%3Ccircle cx='60.0' cy='26.4' r='7.2' fill='%23F0A02C'/%3E%3Ccircle cx='60.0' cy='26.4' r='3.4' fill='%23C9561C' opacity='.55'/%3E%3Ccircle cx='80.0' cy='30.5' r='7.2' fill='%23E9772A'/%3E%3Ccircle cx='80.0' cy='30.5' r='3.4' fill='%23C9561C' opacity='.55'/%3E%3Ccircle cx='100.0' cy='33.1' r='7.2' fill='%23F0A02C'/%3E%3Ccircle cx='100.0' cy='33.1' r='3.4' fill='%23C9561C' opacity='.55'/%3E%3Ccircle cx='120.0' cy='34.0' r='7.2' fill='%23E9772A'/%3E%3Ccircle cx='120.0' cy='34.0' r='3.4' fill='%23C9561C' opacity='.55'/%3E%3Ccircle cx='140.0' cy='33.1' r='7.2' fill='%23F0A02C'/%3E%3Ccircle cx='140.0' cy='33.1' r='3.4' fill='%23C9561C' opacity='.55'/%3E%3Ccircle cx='160.0' cy='30.5' r='7.2' fill='%23E9772A'/%3E%3Ccircle cx='160.0' cy='30.5' r='3.4' fill='%23C9561C' opacity='.55'/%3E%3Ccircle cx='180.0' cy='26.4' r='7.2' fill='%23F0A02C'/%3E%3Ccircle cx='180.0' cy='26.4' r='3.4' fill='%23C9561C' opacity='.55'/%3E%3Ccircle cx='200.0' cy='21.0' r='7.2' fill='%23E9772A'/%3E%3Ccircle cx='200.0' cy='21.0' r='3.4' fill='%23C9561C' opacity='.55'/%3E%3Ccircle cx='220.0' cy='14.7' r='7.2' fill='%23F0A02C'/%3E%3Ccircle cx='220.0' cy='14.7' r='3.4' fill='%23C9561C' opacity='.55'/%3E%3Cpath d='M120.0 41.0 V64.0' stroke='%23B88A2E' stroke-width='1.4'/%3E%3Ccircle cx='120.0' cy='64.0' r='5.5' fill='%23F0A02C'/%3E%3Ccircle cx='120.0' cy='74.0' r='4.5' fill='%23E9772A'/%3E%3Cpath d='M115.0 80.0 q5 -6 10 0 l-1 4 h-8z' fill='%23C9A24E'/%3E%3C/svg%3E") center top/240px 74px repeat-x;position:relative;z-index:3;pointer-events:none}
 .wa-float{position:fixed;right:18px;bottom:18px;z-index:40;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;
   background:#1E9E57;box-shadow:0 10px 24px -6px rgba(20,90,50,.55);transition:transform .15s}
@@ -231,6 +231,28 @@ html,body{max-width:100%;overflow-x:hidden}
 body.lock{position:fixed;left:0;right:0;width:100%;overflow:hidden}
 @media(max-width:880px){.hero,body.claimed .hero{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:400px){html .ticket,html .ticket.mini,html body.claimed .ticket.mini{--stub:76px}html .stub b,html .ticket.mini .stub b,html body.claimed .ticket.mini .stub b{font-size:24px}html .code,html .ticket.mini .code,html body.claimed .ticket.mini .code{font-size:15px;letter-spacing:.02em}html .codebox .cp-ic{width:16px;height:16px}html .tbody{padding:12px 12px 12px 12px}html .tbrand span{font-size:12px;letter-spacing:0}html body.claimed .saved{padding:14px}}
+.cdx{text-align:center;padding:4px 16px 18px}
+.cdx-label{display:flex;align-items:center;justify-content:center;gap:12px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:20px;color:var(--rani)}
+.cdx-line{width:46px;height:1px;background:linear-gradient(90deg,transparent,#C9A24E)}
+.cdx-line:last-child{transform:scaleX(-1)}
+.cdx-row{display:flex;align-items:flex-start;justify-content:center;gap:10px;margin-top:4px}
+.cdx-u{min-width:58px}
+.cdx-u b{display:block;font-family:'Cinzel',serif;font-weight:600;font-size:34px;line-height:1.05;font-variant-numeric:tabular-nums;
+  background:linear-gradient(180deg,#C9A24E,#7A5418);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cdx-u i{display:block;font-style:normal;font-family:'Jost',sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:3px;padding-left:.18em}
+.cdx-sep{font-family:'Cinzel',serif;font-size:26px;line-height:1.3;color:#C9A24E}
+#tSbox.pop b{animation:secPop .35s ease-out}
+@keyframes secPop{0%{opacity:.35;transform:translateY(-3px)}100%{opacity:1;transform:none}}
+.cdx.urgent .cdx-label,.cdx.urgent .cdx-u b{color:#8C3B17;-webkit-text-fill-color:#8C3B17}
+@media(max-width:600px){html .cdx-label{font-size:17px}html .cdx-u{min-width:50px}html .cdx-u b{font-size:27px}html .cdx-u i{font-size:9px;letter-spacing:.12em}html .cdx-sep{font-size:21px}html .cdx-row{gap:6px}}
+@media(prefers-reduced-motion:reduce){#tSbox.pop b{animation:none}}
+.loc{display:flex;width:max-content;margin:2px auto 8px;align-items:center;gap:6px;padding:5px 14px 5px 10px;border-radius:999px;
+  border:1px solid var(--line);background:#fff;color:var(--ink,#3A2A14);font-weight:600;font-size:14px;text-decoration:none;letter-spacing:.02em}
+.loc svg{width:16px;height:16px;fill:none;stroke:var(--rani);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.loc:hover{background:#FDFAF2}
+@media(max-width:600px){html .loc{font-size:13px;padding:4px 12px 4px 9px;margin:0 auto 6px}}
+.ribbon > span:not(.rb-star){white-space:nowrap}
+@media(max-width:400px){html .ribbon{font-size:14px;padding:5px 18px;gap:7px}html .rb-star{font-size:10px}}
 /* Wheel */
 .wheel-box{position:relative;justify-self:center;width:min(500px,88vw);aspect-ratio:1}
 #wheel{width:100%;height:100%;display:block;border-radius:50%;
@@ -284,12 +306,28 @@ body.lock{position:fixed;left:0;right:0;width:100%;overflow:hidden}
 
 /* Visit */
 .visit{background:#FBF6EC;border-top:1px solid var(--line)}
-.visit-in{max-width:1160px;margin:0 auto;padding:28px 22px 16px;display:flex;flex-wrap:wrap;gap:18px 60px;align-items:center;justify-content:space-between}
+.visit-in{max-width:760px;margin:0 auto;padding:30px 22px 16px;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center}
+.visit-in > div:first-child{display:flex;flex-direction:column;align-items:center}
+.vlist{margin-top:14px;justify-items:center}
+.mapbox{position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#EFE9DD;box-shadow:0 14px 30px -18px rgba(58,42,20,.4)}
+.mapbox iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.map-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  background:
+   linear-gradient(90deg,rgba(255,255,255,.65) 2px,transparent 2px) 0 0/64px 64px,
+   linear-gradient(0deg,rgba(255,255,255,.65) 2px,transparent 2px) 0 0/64px 64px,
+   linear-gradient(35deg,transparent 46%,#E2D6BC 46%,#E2D6BC 54%,transparent 54%),
+   #EFE9DD}
+.map-pin{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:#fff;box-shadow:0 6px 14px rgba(58,42,20,.25)}
+.map-pin svg{width:26px;height:26px;fill:#D93025;stroke:#fff;stroke-width:1.4}
+.map-ph-tx{font-size:13px;color:var(--muted);background:rgba(255,255,255,.85);padding:4px 10px;border-radius:6px}
+.map-open{position:absolute;left:10px;bottom:10px;z-index:2;display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:8px;
+  background:#fff;color:#1A73E8;font-weight:600;font-size:14px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.18)}
+.map-open svg{width:18px;height:18px;fill:#D93025;stroke:#fff;stroke-width:1.4}
+.map-open:hover{background:#F6F9FE}
 .logo.big .bm-tx b{font-size:38px}.logo.big .bm-tx small{font-size:12px}
 .visit ul{list-style:none;display:grid;gap:10px;font-size:16px;font-weight:500}
-.visit li{display:flex;gap:10px;align-items:center}
+.visit li{display:flex;gap:8px;align-items:center;justify-content:center}
 .visit li svg{width:18px;height:18px;color:var(--rani);flex:none}
-.visit .btn{width:auto;padding:14px 22px}
 .foot{text-align:center;font-size:13px;color:var(--muted);padding:6px 18px 14px}
 
 .ico{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
@@ -388,7 +426,7 @@ body.lock{position:fixed;left:0;right:0;width:100%;overflow:hidden}
   html .tile{min-width:32px;padding:3px 4px}
   html .tile b{font-size:13.5px}
   html .tile i{font-size:8px}
-  html .head{padding:10px 16px 2px}
+  html .head{padding:0 16px 2px}
   html .brandmark .dancer{height:36px}
   html .bm-tx b{font-size:21px}
   html .bm-tx small{font-size:8.5px;margin-top:4px}
@@ -431,7 +469,8 @@ body.lock{position:fixed;left:0;right:0;width:100%;overflow:hidden}
   html .logo.big .bm-tx b{font-size:27px}
   html .logo.big .bm-tx small{font-size:9.5px}
   html .visit ul{font-size:14px;gap:8px}
-  html .visit .btn{width:100%}
+  html .mapbox{aspect-ratio:4/3}
+  html .map-open{font-size:13px;padding:7px 10px}
   html .wa-float{width:50px;height:50px;right:14px;bottom:14px}
   html .wa-float .wa-ic{width:26px;height:26px}
   html .card{padding:20px 16px 16px}
@@ -457,30 +496,28 @@ body.lock{position:fixed;left:0;right:0;width:100%;overflow:hidden}
   <div class="sp-line"></div>
 </div>
 
-<div class="strip" id="strip">
-  <span class="offer">Opening on <span class="js-odate">16 Nov 2026</span>: spin now and get <b>up to 30% off</b></span>
-  <span class="timer" id="ends" role="timer" aria-live="off">
-    <span class="tl"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6M12 2v3"/></svg><span id="tlText">Opening in</span></span>
-    <span class="tiles">
-      <span class="tile"><b id="tD">00</b><i>days</i></span><span class="colon">:</span>
-      <span class="tile"><b id="tH">00</b><i>hrs</i></span><span class="colon">:</span>
-      <span class="tile"><b id="tM">00</b><i>min</i></span><span class="colon">:</span>
-      <span class="tile sec" id="tSbox"><b id="tS">00</b><i>sec</i></span>
-    </span>
-  </span>
-</div>
 
 <div class="head-wrap">
-<header class="head">
-  <a class="logo" href="#" id="logo" aria-label="Surangi Collection"><span class="brandmark"><i class="dancer" aria-hidden="true"></i><span class="bm-tx"><b>SURANGI</b><small>COLLECTION</small></span></span></a>
-</header>
 <div class="toran" aria-hidden="true"></div>
+<header class="head">
+  <a class="logo big" href="#" id="logo" aria-label="Surangi Collection"><span class="brandmark"><i class="dancer" aria-hidden="true"></i><span class="bm-tx"><b>SURANGI</b><small>COLLECTION</small></span></span></a>
+</header>
+<a class="loc" id="locLink" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span><span class="js-city">Sardarshahar</span>, <span class="js-region">Rajasthan</span></span></a>
+<div class="cdx" id="strip" role="timer" aria-live="off">
+  <div class="cdx-label" id="ends"><span class="cdx-line"></span><span id="tlText">Opening in</span><span class="cdx-line"></span></div>
+  <div class="cdx-row">
+    <div class="cdx-u"><b id="tD">00</b><i>Days</i></div><span class="cdx-sep">:</span>
+    <div class="cdx-u"><b id="tH">00</b><i>Hours</i></div><span class="cdx-sep">:</span>
+    <div class="cdx-u"><b id="tM">00</b><i>Minutes</i></div><span class="cdx-sep">:</span>
+    <div class="cdx-u" id="tSbox"><b id="tS">00</b><i>Seconds</i></div>
+  </div>
+</div>
 </div>
 <a class="wa-float" id="callLink" href="#" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><span class="wa-ic" aria-hidden="true"></span></a>
 
 <main class="hero">
   <div class="copy">
-    <div class="ribbon"><span class="rb-star">✦</span><span>Grand Opening on <span class="js-odate-long">16 November</span></span><span class="rb-star">✦</span></div>
+    <div class="ribbon"><span class="rb-star">✦</span><span>Grand Opening in <span class="js-city">Sardarshahar</span> · <span class="js-odate-long">16 November</span></span><span class="rb-star">✦</span></div>
     <h1 id="heroTitle">Opening soon! Spin now &amp; win up to 30% off</h1>
     <p class="lead" id="heroLead">We open on <span class="js-odate-full">16 November 2026</span>. Spin today to lock in your opening discount, and use it from opening day on designer dresses for rent.</p>
     <div id="already" class="saved" style="display:none">
@@ -573,16 +610,19 @@ body.lock{position:fixed;left:0;right:0;width:100%;overflow:hidden}
   <div class="visit-in">
     <div>
       <div class="logo big" id="logo2"><span class="brandmark"><i class="dancer" aria-hidden="true"></i><span class="bm-tx"><b>SURANGI</b><small>COLLECTION</small></span></span></div>
-      <ul style="margin-top:14px">
+      <ul class="vlist">
         <li><svg class="ico" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span id="addr">Shop No. 12, Main Market, Your City</span></li>
         <li><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="hours">Open daily, 10 AM to 9 PM</span></li>
         <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg><span id="phoneTxt">+91 98765 43210</span></li>
       </ul>
     </div>
-    <a class="btn btn-main" id="mapLink" href="#" target="_blank" rel="noopener">
-      <svg class="ico" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
-      Get directions on Google Maps
-    </a>
+    <div class="mapbox" id="mapBox">
+      <div class="map-ph" id="mapPh" aria-hidden="true">
+        <div class="map-pin"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div>
+        <span class="map-ph-tx">Map preview loads on your website</span>
+      </div>
+      <a class="map-open" id="mapLink" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>Open in Google Maps</span></a>
+    </div>
   </div>
   <p class="foot" id="foot"></p>
 </section>
@@ -658,9 +698,12 @@ const CONFIG = {
   codePrefix: "SC",                                // Coupon code prefix (2–4 letters)
   whatsapp:   "919876543210",                      // WhatsApp number: 91 + 10 digits, without +
   phoneText:  "+91 98765 43210",
-  address:    "Shop No. 12, Main Market, Your City",
+  city:       "Sardarshahar",                     // Town name shown at the top
+  region:     "Rajasthan",
+  address:    "Shop No. 12, Main Market, Sardarshahar",
   hours:      "Open daily, 10 AM to 9 PM",
-  mapsUrl:    "https://maps.google.com/?q=Your+Shop+Address",
+  mapsUrl:    "https://maps.google.com/?q=Sardarshahar,+Rajasthan",
+  mapEmbed:   "Sardarshahar, Rajasthan",          // Address or place name shown in the map box
   openingDate:"2026-11-16T10:00:00+05:30",         // Store opening day and time
   offerEnds:  "2026-12-15T21:00:00+05:30",         // When the opening offer ends
   validDays:  10,                                  // Days a coupon stays valid, counted from opening day
@@ -682,6 +725,9 @@ const $ = id => document.getElementById(id);
   sp.addEventListener("click", hide);
 })();
 document.querySelectorAll(".js-brand").forEach(e => e.textContent = CONFIG.shopName);
+document.querySelectorAll(".js-city").forEach(e => e.textContent = CONFIG.city);
+document.querySelectorAll(".js-region").forEach(e => e.textContent = CONFIG.region);
+$("locLink").href = CONFIG.mapsUrl;
 (function(){
   const o = new Date(CONFIG.openingDate);
   const f = opt => o.toLocaleDateString("en-IN", opt);
@@ -689,7 +735,7 @@ document.querySelectorAll(".js-brand").forEach(e => e.textContent = CONFIG.shopN
   document.querySelectorAll(".js-odate-long").forEach(e => e.textContent = f({day:"numeric",month:"long"}));
   document.querySelectorAll(".js-odate-full").forEach(e => e.textContent = f({day:"numeric",month:"long",year:"numeric"}));
   if(new Date() >= o){
-    const r = document.querySelector(".ribbon"); if(r) r.innerHTML = '<span class="rb-star">✦</span>Grand Opening Celebration<span class="rb-star">✦</span>';
+    const r = document.querySelector(".ribbon"); if(r) r.innerHTML = '<span class="rb-star">✦</span><span>Now open in ' + CONFIG.city + '</span><span class="rb-star">✦</span>';
     $("heroTitle").innerHTML = "We are now open! Spin &amp; win up to 30% off";
     $("heroLead").textContent = "Celebrate our opening with us. Spin the wheel once, win your discount, and book designer lehengas, gowns and sarees on rent.";
     document.querySelectorAll(".offer").forEach(e => e.innerHTML = "Grand opening offer: spin the wheel and get <b>up to 30% off</b>");
@@ -700,6 +746,14 @@ $("callLink").href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent
 $("addr").textContent = CONFIG.address;
 $("hours").textContent = CONFIG.hours;
 $("mapLink").href = $("mapBtn").href = CONFIG.mapsUrl;
+(function(){
+  if(window.self !== window.top || !CONFIG.mapEmbed) return;   // embedded previews block other sites' frames
+  const f = document.createElement("iframe");
+  f.src = "https://www.google.com/maps?q=" + encodeURIComponent(CONFIG.mapEmbed) + "&output=embed";
+  f.loading = "lazy"; f.referrerPolicy = "no-referrer-when-downgrade"; f.title = "Store location on Google Maps";
+  f.setAttribute("allowfullscreen","");
+  $("mapBox").insertBefore(f, $("mapLink")); $("mapPh").style.display = "none";
+})();
 $("foot").textContent = `© ${new Date().getFullYear()} ${CONFIG.shopName}`;
 document.title = CONFIG.shopName + " – Grand Opening Spin & Win";
 
@@ -1088,7 +1142,7 @@ setAlready();
 function tickCD(){
   const now = new Date(), open = new Date(CONFIG.openingDate), beforeOpen = now < open;
   let d = Math.max(0, (beforeOpen ? open : new Date(CONFIG.offerEnds)) - now);
-  if(!beforeOpen && d===0){ $("ends").innerHTML = "<span class='tl'>Offer ended</span>"; return; }
+  if(!beforeOpen && d===0){ $("tlText").textContent = "Offer ended"; document.querySelector(".cdx-row").style.display="none"; return; }
   const days = Math.floor(d/864e5); d%=864e5;
   const h = Math.floor(d/36e5); d%=36e5;
   const m = Math.floor(d/6e4); const s = Math.floor(d%6e4/1e3);
