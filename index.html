@@ -221,7 +221,16 @@ body.claimed .ribbon{display:none}
 body.is-spinning .spark{animation-duration:.6s}
 @media(max-width:880px){.ribbon{justify-self:center;margin-bottom:0;font-size:19px}.copy h1,.copy .lead{text-align:center}.toran{height:62px}}
 @media(prefers-reduced-motion:reduce){.wa-float::before,.spark{animation:none}}
-@media(max-width:480px){.tbrand span{font-size:14px;white-space:nowrap}}
+@media(max-width:480px){html .tbrand span{font-size:14px;white-space:nowrap}}
+/* Mobile fit + scroll lock */
+@media(max-width:880px){.foot{padding-bottom:86px}}
+html,body{max-width:100%;overflow-x:hidden}
+.copy > *,.hero > *{min-width:0}
+.modal{overscroll-behavior:contain}
+.modal .card{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+body.lock{position:fixed;left:0;right:0;width:100%;overflow:hidden}
+@media(max-width:880px){.hero,body.claimed .hero{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:400px){html .ticket,html .ticket.mini,html body.claimed .ticket.mini{--stub:76px}html .stub b,html .ticket.mini .stub b,html body.claimed .ticket.mini .stub b{font-size:24px}html .code,html .ticket.mini .code,html body.claimed .ticket.mini .code{font-size:15px;letter-spacing:.02em}html .codebox .cp-ic{width:16px;height:16px}html .tbody{padding:12px 12px 12px 12px}html .tbrand span{font-size:12px;letter-spacing:0}html body.claimed .saved{padding:14px}}
 /* Wheel */
 .wheel-box{position:relative;justify-self:center;width:min(500px,88vw);aspect-ratio:1}
 #wheel{width:100%;height:100%;display:block;border-radius:50%;
@@ -274,7 +283,7 @@ body.is-spinning .spark{animation-duration:.6s}
 .cat:nth-child(4){--bg:#F6E8D3;--ink:#A0681F;--edge:#EBD5B2}
 
 /* Visit */
-.visit{background:var(--blush)}
+.visit{background:#FBF6EC;border-top:1px solid var(--line)}
 .visit-in{max-width:1160px;margin:0 auto;padding:28px 22px 16px;display:flex;flex-wrap:wrap;gap:18px 60px;align-items:center;justify-content:space-between}
 .logo.big .bm-tx b{font-size:38px}.logo.big .bm-tx small{font-size:12px}
 .visit ul{list-style:none;display:grid;gap:10px;font-size:16px;font-weight:500}
@@ -319,11 +328,21 @@ body.is-spinning .spark{animation-duration:.6s}
 .tmeta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;font-size:12.5px;color:var(--muted)}
 .tmeta b{display:block;color:var(--plum);font-size:14px}
 @media(max-width:480px){body.claimed .ticket.mini,.ticket,.ticket.mini{--stub:84px}body.claimed .ticket.mini .stub b,.stub b,.ticket.mini .stub b{font-size:28px}body.claimed .ticket.mini .code,.code,.ticket.mini .code{font-size:16px;letter-spacing:.04em}.tbody{padding:12px 14px 12px 12px}.codebox{padding:9px 6px 6px}.tbrand span{font-size:20px}body.claimed .saved-visit{flex-wrap:wrap}body.claimed .saved-visit div{flex:1 1 calc(100% - 40px)}body.claimed .saved-visit a{margin-left:34px}}
-.codebox{cursor:pointer;width:100%;font:inherit;transition:background .15s,border-color .15s}
-.codebox:hover{background:#FDFAF2}
-.codebox .cp-ic{width:18px;height:18px;flex:none;margin-left:10px;fill:none;stroke:var(--rani);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.codebox{width:100%;font:inherit;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+.cp-btn{display:grid;place-items:center;flex:none;width:34px;height:34px;margin:-6px -4px -6px 6px;border:none;border-radius:8px;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s}
+.cp-btn:hover,.cp-btn:active{background:var(--blush)}
+.codebox .cp-ic{width:18px;height:18px;flex:none;margin:0;fill:none;stroke:var(--rani);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .codebox.copied{border-style:solid;background:#F2FBF6;border-color:#1E9E57}
 .codebox.copied small{background:#1E9E57}
+.codebox.copied .cp-ic{stroke:#1E9E57}
+.toast{position:fixed;left:50%;bottom:28px;z-index:120;display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;
+  background:#1E9E57;color:#fff;font-weight:600;font-size:15px;box-shadow:0 12px 28px -8px rgba(20,90,50,.55);
+  transform:translate(-50%,20px);opacity:0;pointer-events:none;transition:opacity .2s,transform .25s cubic-bezier(.2,1.3,.4,1)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast{white-space:nowrap;max-width:calc(100vw - 32px)}
+.codebox.copied .cp-btn{background:transparent}
+@media(max-width:600px){html .toast{bottom:80px;font-size:14px;padding:10px 16px}}
+.toast svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 .tk-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px}
 .tk-hint{font-size:12.5px;color:var(--muted)}
 .save-img{display:inline-flex;align-items:center;gap:5px;border:none;background:none;padding:4px 2px;font:inherit;font-size:13.5px;font-weight:700;color:var(--rani);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
@@ -360,6 +379,74 @@ body.is-spinning .spark{animation-duration:.6s}
 .callshort{display:none}.logo,.call{white-space:nowrap}
 @media (max-width:420px){.brandmark .dancer{height:38px}.bm-tx b{font-size:24px}.bm-tx small{font-size:9px}.call{padding:8px 14px;font-size:14px}#callTxt{display:none}.callshort{display:inline}}
 @media (prefers-reduced-motion:reduce){#wheel{transition-duration:1.2s}.card{animation:none}}
+
+/* ===== Phone type scale (kept last so it wins) ===== */
+@media (max-width:600px){
+  html body{font-size:15px}
+  html .strip{padding:7px 10px}
+  html .timer .tl{font-size:12.5px}
+  html .tile{min-width:32px;padding:3px 4px}
+  html .tile b{font-size:13.5px}
+  html .tile i{font-size:8px}
+  html .head{padding:10px 16px 2px}
+  html .brandmark .dancer{height:36px}
+  html .bm-tx b{font-size:21px}
+  html .bm-tx small{font-size:8.5px;margin-top:4px}
+  html .toran{height:50px;background-size:190px 58px}
+  html .hero{padding:0 16px 28px;gap:14px}
+  html .ribbon{font-size:15.5px;padding:5px 20px;margin-bottom:2px}
+  html .copy h1{font-size:28px;line-height:1.12}
+  html body.claimed .copy h1{font-size:28px}
+  html .hname{font-size:1.5em}
+  html .copy .lead{font-size:15px;line-height:1.55;margin-top:-4px}
+  html .wheel-box{width:min(320px,84vw);margin-bottom:34px}
+  html .wheel-hint{font-size:13.5px;bottom:-32px}
+  html .wheel-hint svg{width:17px;height:17px}
+  html .hub{font-size:24px}
+  html .btn{font-size:15px;padding:13px 16px;border-radius:8px}
+  html .btn svg{width:17px;height:17px}
+  html .saved-actions .btn{padding:12px 10px;font-size:14.5px}
+  html .saved-visit{font-size:13px}
+  html .tk-hint{font-size:12px}
+  html .save-img{font-size:13px}
+  html .how{padding:24px 16px 22px}
+  html .how h2,html .collection h2{font-size:30px}
+  html .how-sub,html .collection > p{font-size:14.5px;line-height:1.5}
+  html .steps{margin-top:16px}
+  html .step{gap:14px;padding-bottom:18px}
+  html .step-ic{width:48px;height:48px;box-shadow:0 0 0 4px var(--blush),0 8px 16px -8px rgba(116,80,26,.55)}
+  html .step-ic svg,html .wa-ic.big{width:23px;height:23px}
+  html .step-ic .num{width:20px;height:20px;font-size:11px;top:-5px;right:-6px}
+  html .step:not(:last-child)::after{top:62px;left:27px}
+  html .step h3{font-size:16px}
+  html .step p{font-size:13.5px;margin-top:3px}
+  html .collection{padding:26px 16px}
+  html .cats{gap:10px;margin-top:16px}
+  html .cat{padding:16px 14px 14px}
+  html .cat svg{width:34px;height:34px}
+  html .cat h3{font-size:15.5px;margin-top:10px}
+  html .cat p{font-size:12.5px;line-height:1.45}
+  html .visit-in{padding:22px 16px 12px;gap:14px}
+  html .logo.big .brandmark .dancer{height:46px}
+  html .logo.big .bm-tx b{font-size:27px}
+  html .logo.big .bm-tx small{font-size:9.5px}
+  html .visit ul{font-size:14px;gap:8px}
+  html .visit .btn{width:100%}
+  html .wa-float{width:50px;height:50px;right:14px;bottom:14px}
+  html .wa-float .wa-ic{width:26px;height:26px}
+  html .card{padding:20px 16px 16px}
+  html .hello{font-size:28px}
+  html .won{font-size:14px}
+  html .spincard .won{margin-bottom:12px}
+  html .field{margin-bottom:11px}
+  html .field label{font-size:13px;margin-bottom:5px}
+  html .field input{font-size:16px;padding:11px 13px}
+  html .phone span{padding:0 11px;font-size:15px}
+  html .agree{font-size:13px}
+  html .terms{font-size:11.5px}
+  html .ticket{margin:12px 0 6px}
+  html .spincard .err{min-height:16px;margin:6px 0 2px;font-size:13px}
+}
 </style>
 </head>
 <body class="splashing">
@@ -405,11 +492,11 @@ body.is-spinning .spark{animation-duration:.6s}
         <div class="stub"><span class="flat">Flat</span><b id="savedOff">20%</b><span>off</span></div>
         <div class="tbody">
           <div class="tbrand"><span class="js-brand">Surangi Collection</span><small>Grand opening coupon</small></div>
-          <button class="codebox" type="button" data-copy="savedCode" aria-label="Copy coupon code"><small>Code</small><span class="code" id="savedCode">SC20-XXXX-XXX</span><svg class="cp-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button>
+          <div class="codebox"><small>Code</small><span class="code" id="savedCode">SC20-XXXX-XXX</span><button class="cp-btn" type="button" data-copy="savedCode" aria-label="Copy coupon code"><svg class="cp-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></div>
           <div class="valid">Valid until <b id="savedValid">—</b></div>
         </div>
       </div>
-      <div class="tk-row"><span class="tk-hint">Tap the code to copy it</span><button class="save-img" type="button" id="saveImgSaved"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>Save image</button></div>
+      <div class="tk-row"><span class="tk-hint">Tap the copy icon to copy the code</span><button class="save-img" type="button" id="saveImgSaved"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>Save image</button></div>
       <div class="saved-actions">
         <a class="btn btn-main" id="savedDir" href="#" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Get directions</a>
         <button class="btn btn-line" id="showMine" type="button">View details</button>
@@ -509,14 +596,14 @@ body.is-spinning .spark{animation-duration:.6s}
       <div class="stub"><span class="flat">Flat</span><b id="offVal">20%</b><span>off</span></div>
       <div class="tbody">
         <div class="tbrand"><span class="js-brand">Surangi Collection</span><small>Grand opening coupon</small></div>
-        <button class="codebox" type="button" data-copy="codeVal" aria-label="Copy coupon code"><small>Code</small><span class="code" id="codeVal">SC20-XXXX-XXX</span><svg class="cp-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button>
+        <div class="codebox"><small>Code</small><span class="code" id="codeVal">SC20-XXXX-XXX</span><button class="cp-btn" type="button" data-copy="codeVal" aria-label="Copy coupon code"><svg class="cp-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></div>
         <div class="tmeta">
           <div>Name<b id="metaName">—</b></div>
           <div>Valid until<b id="metaValid">—</b></div>
         </div>
       </div>
     </div>
-    <div class="tk-row"><span class="tk-hint">Tap the code to copy it</span><button class="save-img" type="button" id="saveImgModal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>Save image</button></div>
+    <div class="tk-row"><span class="tk-hint">Tap the copy icon to copy the code</span><button class="save-img" type="button" id="saveImgModal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>Save image</button></div>
     <a class="btn btn-main" id="mapBtn" href="#" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Get directions to the store</a>
     <ul class="terms" id="terms"></ul>
   </div>
@@ -559,6 +646,7 @@ body.is-spinning .spark{animation-duration:.6s}
     <img id="imgViewImg" alt="">
   </div>
 </div>
+<div class="toast" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span id="toastTx">Copied</span></div>
 <canvas id="confetti"></canvas>
 
 <script>
@@ -568,8 +656,8 @@ body.is-spinning .spark{animation-duration:.6s}
 const CONFIG = {
   shopName:   "Surangi Collection",                      // Your store name
   codePrefix: "SC",                                // Coupon code prefix (2–4 letters)
-  whatsapp:   "917357869607",                      // WhatsApp number: 91 + 10 digits, without +
-  phoneText:  "+91 7357869607",
+  whatsapp:   "919876543210",                      // WhatsApp number: 91 + 10 digits, without +
+  phoneText:  "+91 98765 43210",
   address:    "Shop No. 12, Main Market, Your City",
   hours:      "Open daily, 10 AM to 9 PM",
   mapsUrl:    "https://maps.google.com/?q=Your+Shop+Address",
@@ -847,12 +935,31 @@ function showResult(r, celebrate, note){
 $("closeModal").onclick = () => $("modal").classList.remove("show");
 $("modal").addEventListener("click", e => { if(e.target.id==="modal") $("modal").classList.remove("show"); });
 document.addEventListener("keydown", e => { if(e.key==="Escape"){ $("modal").classList.remove("show"); closeSpinForm(); } });
-document.querySelectorAll("[data-copy]").forEach(box => box.addEventListener("click", async () => {
-  const codeEl = $(box.dataset.copy), tag = box.querySelector("small");
-  try{ await navigator.clipboard.writeText(codeEl.textContent); tag.textContent = "Copied!"; }
-  catch(e){ const rg=document.createRange(); rg.selectNodeContents(codeEl); const sel=getSelection(); sel.removeAllRanges(); sel.addRange(rg); tag.textContent = "Selected, now copy"; }
-  box.classList.add("copied");
-  clearTimeout(box._t); box._t = setTimeout(()=>{ tag.textContent = "Code"; box.classList.remove("copied"); }, 1800);
+function toast(msg){
+  const t = $("toast"); $("toastTx").textContent = msg;
+  t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(()=>t.classList.remove("show"), 2000);
+}
+async function copyText(text){
+  try{ if(navigator.clipboard && window.isSecureContext){ await navigator.clipboard.writeText(text); return true; } }catch(e){}
+  try{
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly",""); ta.style.cssText = "position:fixed;top:0;left:0;opacity:0;pointer-events:none;font-size:16px";
+    document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, text.length);
+    const ok = document.execCommand("copy"); ta.remove();
+    try{ getSelection().removeAllRanges(); }catch(e){}
+    return ok;
+  }catch(e){ return false; }
+}
+document.querySelectorAll("[data-copy]").forEach(btn => btn.addEventListener("click", async () => {
+  const code = $(btn.dataset.copy).textContent.trim(), box = btn.closest(".codebox"), tag = box.querySelector("small");
+  const ok = await copyText(code);
+  try{ getSelection().removeAllRanges(); }catch(e){}
+  if(ok){
+    toast("Coupon code copied"); tag.textContent = "Copied"; box.classList.add("copied");
+    clearTimeout(box._t); box._t = setTimeout(()=>{ tag.textContent = "Code"; box.classList.remove("copied"); }, 1800);
+  } else {
+    toast("Could not copy. Please note the code: " + code);
+  }
 }));
 
 /* ---------- Save coupon as image ---------- */
@@ -914,12 +1021,12 @@ async function saveCouponImage(r, btn){
     let dl = null;
     try{ if(window.claude && typeof window.claude.use === "function") dl = await window.claude.use("downloads"); }catch(e){}
     if(dl){
-      try{ await dl.save({filename, data: blob}); reset("Image saved"); }
+      try{ await dl.save({filename, data: blob}); reset("Image saved"); toast("Coupon image saved"); }
       catch(e){ if(e && e.code === "declined") reset(); else { showImage(blob); reset(); } }
     } else if(window.self === window.top){
       const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = filename;
       document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href), 4000);
-      reset("Image saved");
+      reset("Image saved"); toast("Coupon image saved");
     } else { showImage(blob); reset(); }
   }catch(e){ reset("Could not save, take a screenshot"); }
   btn.disabled = false;
@@ -994,6 +1101,19 @@ function tickCD(){
   else { $("tlText").textContent = "Offer ends in"; }
 }
 tickCD(); setInterval(tickCD,1000);
+
+/* ---------- Lock page scroll while any popup is open ---------- */
+(function(){
+  let locked = false, y = 0;
+  const update = () => {
+    const open = !!document.querySelector(".modal.show");
+    if(open && !locked){ y = window.scrollY; document.body.style.top = (-y) + "px"; document.body.classList.add("lock"); locked = true; }
+    else if(!open && locked){ document.body.classList.remove("lock"); document.body.style.top = ""; window.scrollTo(0, y); locked = false; }
+  };
+  const mo = new MutationObserver(update);
+  document.querySelectorAll(".modal").forEach(m => mo.observe(m, {attributes:true, attributeFilter:["class"]}));
+})();
+
 
 /* ---------- Confetti ---------- */
 function confetti(){
