@@ -561,6 +561,12 @@ html .step .step-ic{background:linear-gradient(150deg,var(--c1),var(--c2));box-s
 html .step .step-ic .num{background:#fff;color:var(--c2);box-shadow:0 0 0 2px var(--c1)}
 html .step:not(:last-child)::after{border-color:var(--c1);opacity:.55}
 @media(max-width:600px){html .step .step-ic{box-shadow:0 0 0 4px var(--tint),0 8px 16px -8px var(--c2)}}
+/* WhatsApp-themed number field */
+html .wa-field span{display:flex;align-items:center;gap:7px;background:#25D366;color:#fff;border-color:#1EB457;font-weight:700}
+html .wa-field span .wa-ic{width:19px;height:19px}
+html .wa-field input{border-color:#9FE3B8;background:#F3FCF6}
+html .wa-field input:focus{border-color:#25D366;box-shadow:0 0 0 3px rgba(37,211,102,.18)}
+html .wa-field input::placeholder{color:#7BA88B}
 </style>
 </head>
 <body class="splashing">
@@ -735,8 +741,8 @@ html .step:not(:last-child)::after{border-color:var(--c1);opacity:.55}
         <input id="name" name="name" type="text" placeholder="e.g. Priya Sharma" autocomplete="name" maxlength="40">
       </div>
       <div class="field">
-        <label for="mobile">Mobile number</label>
-        <div class="phone"><span>+91</span><input id="mobile" name="tel" type="tel" inputmode="numeric" placeholder="10 digit number" autocomplete="tel-national"></div>
+        <label for="mobile">WhatsApp number</label>
+        <div class="phone wa-field"><span><i class="wa-ic" aria-hidden="true"></i>+91</span><input id="mobile" name="tel" type="tel" inputmode="numeric" placeholder="10 digit WhatsApp number" autocomplete="tel-national"></div>
       </div>
       <label class="agree"><input type="checkbox" id="agree"><span class="box" aria-hidden="true"></span>
         <span>I agree to the <button type="button" class="linkish" id="toggleTerms">terms &amp; conditions</button></span></label>
@@ -935,8 +941,8 @@ function validate(){
   $("mobile").value = normalizeMobile($("mobile").value);
   const name = $("name").value.trim(), mob = $("mobile").value;
   if(name.length < 2) return "Please enter your name.";
-  if(!/^[6-9]\d{9}$/.test(mob)) return "Please enter a valid 10-digit mobile number.";
-  if((store.get(KEY+"_mobiles")||[]).includes(mob)) return "This number has already been used for a spin.";
+  if(!/^[6-9]\d{9}$/.test(mob)) return "Please enter a valid 10-digit WhatsApp number.";
+  if((store.get(KEY+"_mobiles")||[]).includes(mob)) return "This WhatsApp number has already been used for a spin.";
   if(!$("agree").checked) return "Please accept the terms & conditions.";
   return "";
 }
